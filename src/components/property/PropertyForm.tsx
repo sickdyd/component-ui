@@ -7,6 +7,7 @@ import TextArea from 'components/form/base/TextArea'
 import FormElement from 'components/form/FormElement'
 import { FormGroup } from 'components/form/FormGroup'
 import { DeleteProperty } from 'components/property/DeleteProperty'
+import { ExpandButton } from 'components/property/ExpandButton'
 import { ToggleVisibility } from 'components/property/ToggleVisibility'
 import { useEffect, useState } from 'react'
 import { useAppDispatch } from 'redux/hooks'
@@ -19,7 +20,8 @@ import {
 
 const Wrapper = styled.div<{ visible: boolean }>`
   display: flex;
-  padding: 1rem;
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--light-grey);
 
   a,
   a:visited,
@@ -47,6 +49,7 @@ const PropertyName = styled.div`
 `
 
 const FormFields = styled.div`
+  position: relative;
   width: 100%;
 `
 
@@ -76,9 +79,11 @@ export function PropertyForm({
   const [boolean, setBoolean] = useState<boolean>(property?.boolean || false)
   const [visible, setVisible] = useState<boolean>(property?.visible || true)
 
-  const dispatch = useAppDispatch()
-
   const isEditing = index !== undefined
+
+  const [expanded, setExpanded] = useState<boolean>(!isEditing)
+
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     index &&
@@ -157,65 +162,84 @@ export function PropertyForm({
           />
         </PropertyName>
       )}
+
       <FormFields>
-        <FormGroup>
-          <FormElement label="Property name" caption={propertyNameCaption}>
-            <Input value={propertyName} onChange={({ target }) => setPropertyName(target.value)} />
-          </FormElement>
-          <FormElement label="Display name">
-            <Input value={displayName} onChange={({ target }) => setDisplayName(target.value)} />
-          </FormElement>
-          <FormElement label="Description" vertical>
-            <TextArea value={description} onChange={({ target }) => setDescription(target.value)} />
-          </FormElement>
-          <FormElement label="Property type">
-            <DropDown
-              elements={propertyTypes}
-              onChange={({ target }) => setPropertyType(target.value)}
-            />
-          </FormElement>
-          {propertyType === 'one of' && (
-            <>
-              <FormElement label="Property control" caption={propertyControlCaption}>
-                <DropDown
-                  elements={[{ value: 'select', name: 'select' }]}
-                  onChange={({ target }) => setPropertyControl(target.value)}
+        {isEditing && (
+          <ExpandButton expanded={expanded} onClick={() => setExpanded((prev) => !prev)} />
+        )}
+        {expanded && (
+          <>
+            <FormGroup>
+              <FormElement label="Property name" caption={propertyNameCaption}>
+                <Input
+                  value={propertyName}
+                  onChange={({ target }) => setPropertyName(target.value)}
                 />
               </FormElement>
-              <FormElement label="Options" caption="list options separated by comma" vertical>
-                <TextArea value={options} onChange={({ target }) => setOptions(target.value)} />
-              </FormElement>
-              <FormElement label="Default value">
-                <DropDown
-                  elements={options.split(',').map((option) => ({ value: option, name: option }))}
-                  onChange={({ target }) => setDefaulValue(target.value)}
+              <FormElement label="Display name">
+                <Input
+                  value={displayName}
+                  onChange={({ target }) => setDisplayName(target.value)}
                 />
               </FormElement>
-            </>
-          )}
-          {propertyType === 'node' && (
-            <>
-              <FormElement label="Property control">
-                <DropDown elements={[{ value: 'textarea', name: 'textarea' }]} />
+              <FormElement label="Description" vertical>
+                <TextArea
+                  value={description}
+                  onChange={({ target }) => setDescription(target.value)}
+                />
               </FormElement>
-              <FormElement label="Default value" vertical>
-                <TextArea />
+              <FormElement label="Property type">
+                <DropDown
+                  elements={propertyTypes}
+                  onChange={({ target }) => setPropertyType(target.value)}
+                />
               </FormElement>
-            </>
-          )}
-          {propertyType === 'boolean' && (
-            <FormElement label="Description">
-              <Switch isTrue={boolean} onClick={(isTrue) => setBoolean(isTrue)} />
-            </FormElement>
-          )}
-        </FormGroup>
-        {!isEditing && (
-          <ControlsWrapper>
-            <Button variant="cancel" onClick={() => dispatch(showPropertyForm(false))}>
-              Cancel
-            </Button>
-            <Button onClick={handleAddProperty}>Add</Button>
-          </ControlsWrapper>
+              {propertyType === 'one of' && (
+                <>
+                  <FormElement label="Property control" caption={propertyControlCaption}>
+                    <DropDown
+                      elements={[{ value: 'select', name: 'select' }]}
+                      onChange={({ target }) => setPropertyControl(target.value)}
+                    />
+                  </FormElement>
+                  <FormElement label="Options" caption="list options separated by comma" vertical>
+                    <TextArea value={options} onChange={({ target }) => setOptions(target.value)} />
+                  </FormElement>
+                  <FormElement label="Default value">
+                    <DropDown
+                      elements={options
+                        .split(',')
+                        .map((option) => ({ value: option, name: option }))}
+                      onChange={({ target }) => setDefaulValue(target.value)}
+                    />
+                  </FormElement>
+                </>
+              )}
+              {propertyType === 'node' && (
+                <>
+                  <FormElement label="Property control">
+                    <DropDown elements={[{ value: 'textarea', name: 'textarea' }]} />
+                  </FormElement>
+                  <FormElement label="Default value" vertical>
+                    <TextArea />
+                  </FormElement>
+                </>
+              )}
+              {propertyType === 'boolean' && (
+                <FormElement label="Description">
+                  <Switch isTrue={boolean} onClick={(isTrue) => setBoolean(isTrue)} />
+                </FormElement>
+              )}
+            </FormGroup>
+            {!isEditing && (
+              <ControlsWrapper>
+                <Button variant="cancel" onClick={() => dispatch(showPropertyForm(false))}>
+                  Cancel
+                </Button>
+                <Button onClick={handleAddProperty}>Add</Button>
+              </ControlsWrapper>
+            )}
+          </>
         )}
       </FormFields>
     </Wrapper>

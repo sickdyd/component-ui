@@ -13,5 +13,9 @@ const Wrapper = styled.div`
 `
 
 export function DeleteProperty({ onClick }: { onClick: () => void }): JSX.Element {
-  return <Wrapper onClick={onClick}><Delete /></Wrapper>
+  return (
+    <Wrapper onClick={onClick}>
+      <Delete />
+    </Wrapper>
+  )
 }

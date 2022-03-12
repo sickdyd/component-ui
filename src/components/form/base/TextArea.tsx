@@ -8,6 +8,7 @@ const TextArea = styled.textarea`
   border: 1px solid var(--light-grey);
   font-size: 14px;
   padding: 0.3rem 0.5rem;
+  max-width: 600px;
 `
 
 export default TextArea
