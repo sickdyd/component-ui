@@ -25,10 +25,14 @@ export const componentSlice = createSlice({
       action: PayloadAction<{ index: number; property: Property }>
     ) => {
       state.properties[action.payload.index] = action.payload.property
+    },
+    deleteProperty: (state: ComponentState, action: PayloadAction<number>) => {
+      state.properties = state.properties.filter((_, index) => index !== action.payload)
     }
   }
 })
 
-export const { showPropertyForm, addProperty, updateProperty } = componentSlice.actions
+export const { showPropertyForm, addProperty, updateProperty, deleteProperty } =
+  componentSlice.actions
 
 export default componentSlice.reducer

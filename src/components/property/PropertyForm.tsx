@@ -6,11 +6,18 @@ import Switch from 'components/form/base/Switch'
 import TextArea from 'components/form/base/TextArea'
 import FormElement from 'components/form/FormElement'
 import { FormGroup } from 'components/form/FormGroup'
+import { DeleteProperty } from 'components/property/DeleteProperty'
+import { ToggleVisibility } from 'components/property/ToggleVisibility'
 import { useEffect, useState } from 'react'
 import { useAppDispatch } from 'redux/hooks'
-import { addProperty, showPropertyForm, updateProperty } from 'redux/slices/componentSlice'
+import {
+  addProperty,
+  deleteProperty,
+  showPropertyForm,
+  updateProperty
+} from 'redux/slices/componentSlice'
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ visible: boolean }>`
   display: flex;
   padding: 1rem;
 
@@ -19,10 +26,24 @@ const Wrapper = styled.div`
   a:active {
     color: var(--grey);
   }
+
+  div,
+  span,
+  input,
+  button,
+  label,
+  textarea,
+  select {
+    color: ${({ visible }) => (visible ? 'inherit' : 'var(--light-grey)')};
+  }
 `
 
 const PropertyName = styled.div`
+  display: flex;
+  white-space: nowrap;
+  gap: 1rem;
   width: 40%;
+  font-size: 1.1rem;
 `
 
 const FormFields = styled.div`
@@ -43,16 +64,17 @@ export function PropertyForm({
   index?: number
   property?: Property
 }): JSX.Element {
-  const [propertyName, setPropertyName] = useState(property?.propertyName || '')
-  const [displayName, setDisplayName] = useState(property?.displayName || '')
-  const [description, setDescription] = useState(property?.description || '')
+  const [propertyName, setPropertyName] = useState<string>(property?.propertyName || '')
+  const [displayName, setDisplayName] = useState<string>(property?.displayName || '')
+  const [description, setDescription] = useState<string>(property?.description || '')
   const [propertyType, setPropertyType] = useState<PropertyType>(property?.propertyType || 'one of')
   const [propertyControl, setPropertyControl] = useState<PropertyControl>(
     property?.propertyControl || 'select'
   )
-  const [defaultValue, setDefaulValue] = useState(property?.defaultValue || '')
-  const [options, setOptions] = useState(property?.options || '')
+  const [defaultValue, setDefaulValue] = useState<string | boolean>(property?.defaultValue || '')
+  const [options, setOptions] = useState<string>(property?.options || '')
   const [boolean, setBoolean] = useState<boolean>(property?.boolean || false)
+  const [visible, setVisible] = useState<boolean>(property?.visible || true)
 
   const dispatch = useAppDispatch()
 
@@ -71,7 +93,8 @@ export function PropertyForm({
             propertyControl,
             defaultValue,
             options,
-            boolean
+            boolean,
+            visible
           }
         })
       )
@@ -84,6 +107,7 @@ export function PropertyForm({
     defaultValue,
     options,
     boolean,
+    visible,
     dispatch,
     index
   ])
@@ -98,9 +122,11 @@ export function PropertyForm({
         propertyControl,
         defaultValue,
         options,
+        visible,
         boolean
       })
     )
+
     dispatch(showPropertyForm(false))
   }
 
@@ -119,8 +145,18 @@ export function PropertyForm({
   )
 
   return (
-    <Wrapper>
-      {isEditing && <PropertyName>{propertyName || 'Type a name...'}</PropertyName>}
+    <Wrapper visible={visible}>
+      {isEditing && (
+        <PropertyName>
+          {propertyName || 'Type a name...'}
+          <ToggleVisibility visible={visible} onClick={() => setVisible((prev) => !prev)} />
+          <DeleteProperty
+            onClick={() => {
+              dispatch(deleteProperty(index))
+            }}
+          />
+        </PropertyName>
+      )}
       <FormFields>
         <FormGroup>
           <FormElement label="Property name" caption={propertyNameCaption}>

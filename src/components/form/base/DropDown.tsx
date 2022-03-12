@@ -12,7 +12,7 @@ export default function DropDown({ selected, elements, onChange }: DropDownProps
   return (
     <Select onChange={onChange}>
       {elements.map((element, index) => (
-        <option key={index} value={element.value} selected={selected === element.value}>
+        <option key={index} value={element.value} defaultValue={selected}>
           {element.name}
         </option>
       ))}

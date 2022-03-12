@@ -10,4 +10,5 @@ interface Property {
   options?: string
   defaultValue: string | boolean
   boolean?: boolean
+  visible?: boolean
 }
