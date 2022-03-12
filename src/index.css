@@ -3,6 +3,9 @@
   --grey: rgb(132, 132, 132);
   --dark-grey: rgb(94, 94, 94);
   --black: rgb(55, 55, 55);
+  --blue: rgb(0, 108, 255);
+
+  --border-radius: 2px;
 }
 
 body {
