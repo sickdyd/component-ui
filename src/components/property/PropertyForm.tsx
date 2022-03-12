@@ -86,6 +86,28 @@ export default function PropertyForm({
   const dispatch = useAppDispatch()
 
   useEffect(() => {
+    switch (propertyType) {
+      case 'one of':
+        setPropertyControl('select')
+        setOptions('')
+        setDefaulValue('')
+        break
+      case 'node':
+        setPropertyControl('select')
+        setOptions('')
+        setDefaulValue('')
+        break
+      case 'boolean':
+        setPropertyControl('')
+        setOptions('')
+        setDefaulValue(true)
+        break
+      default:
+        break
+    }
+  }, [propertyType])
+
+  useEffect(() => {
     index &&
       dispatch(
         updateProperty({
@@ -221,7 +243,10 @@ export default function PropertyForm({
                     <DropDown elements={[{ value: 'textarea', name: 'textarea' }]} />
                   </FormElement>
                   <FormElement label="Default value" vertical>
-                    <TextArea />
+                    <TextArea
+                      value={typeof defaultValue === 'string' ? defaultValue : ''}
+                      onChange={({ target }) => setDefaulValue(target.value)}
+                    />
                   </FormElement>
                 </>
               )}

@@ -1,5 +1,5 @@
 type PropertyType = 'one of' | 'node' | 'boolean'
-type PropertyControl = 'select' | 'textarea'
+type PropertyControl = '' | 'select' | 'textarea'
 
 interface Property {
   propertyName: string

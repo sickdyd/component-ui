@@ -19,6 +19,21 @@ const StyledGearIcon = styled(GearIcon)`
   font-size: var(--icon-size);
 `
 
+const getComponentProps = (properties: Property[] = []): any => {
+  const props = {} as any
+
+  properties.forEach(
+    (property) =>
+      property?.visible &&
+      property?.defaultValue &&
+      (props[property.propertyName.toLowerCase()] = property?.defaultValue)
+  )
+
+  console.log(props)
+
+  return props
+}
+
 export default function ComponentPreview(): JSX.Element {
   const properties = useAppSelector((state) => state.componentSlice.properties)
 
@@ -30,7 +45,7 @@ export default function ComponentPreview(): JSX.Element {
         <StyledGearIcon />
       </Heading>
       <h2>Component Preview</h2>
-      <Button>SIGN UP</Button>
+      <Button {...getComponentProps(properties)}>SIGN UP</Button>
     </Wrapper>
   )
 }
