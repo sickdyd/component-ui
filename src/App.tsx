@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { AddProperty } from 'components/property/AddProperty'
+import { AddPropertyMenu } from 'components/property/AddPropertyMenu'
+import { PropertyList } from 'components/property/PropertyList'
 
 const Wrapper = styled.div`
   padding: 2rem;
@@ -10,7 +11,8 @@ export default function App() {
     <Wrapper>
       <header></header>
       <main>
-        <AddProperty />
+        <AddPropertyMenu />
+        <PropertyList />
       </main>
       <footer></footer>
     </Wrapper>

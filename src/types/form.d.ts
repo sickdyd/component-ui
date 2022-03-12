@@ -12,5 +12,6 @@ type DropDownElement = {
 }
 
 interface DropDownProps extends InputProps {
+  selected?: string
   elements: DropDownElement[]
 }

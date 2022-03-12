@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { MouseEvent } from 'react'
 
 const SwitchWrapper = styled.div`
   display: inline;
@@ -7,31 +6,35 @@ const SwitchWrapper = styled.div`
   border: 1px solid var(--light-grey);
   border-radius: var(--border-radius);
   width: fit-content;
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
-const SwitchValue = styled.div<{ selected?: boolean }>`
+const SwitchValue = styled.div<{ isTrue?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.2rem 0.8rem;
   font-size: 14px;
   border-right: 1px solid var(--light-grey);
-  background-color: ${({ selected }) => (selected ? 'var(--light-grey)' : 'transparent')};
+  background-color: ${({ isTrue }) => (isTrue ? 'var(--light-grey)' : 'transparent')};
 `
 
 export default function Switch({
   onClick,
-  selected = false
+  isTrue = false
 }: {
-  onClick?: (event: MouseEvent) => void
-  selected?: boolean
+  onClick: (isTrue: boolean) => void
+  isTrue: boolean
 }) {
   return (
     <SwitchWrapper>
-      <SwitchValue selected={selected} onClick={onClick}>
+      <SwitchValue isTrue={isTrue} onClick={() => onClick(true)}>
         True
       </SwitchValue>
-      <SwitchValue selected={!selected} onClick={onClick}>
+      <SwitchValue isTrue={!isTrue} onClick={() => onClick(false)}>
         False
       </SwitchValue>
     </SwitchWrapper>

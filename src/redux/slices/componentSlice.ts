@@ -17,12 +17,18 @@ export const componentSlice = createSlice({
     showPropertyForm: (state: ComponentState, action: PayloadAction<boolean>) => {
       state.displayAddProperty = action.payload
     },
-    saveProperty: (state: ComponentState, action: PayloadAction<Property>) => {
+    addProperty: (state: ComponentState, action: PayloadAction<Property>) => {
       state.properties.push(action.payload)
+    },
+    updateProperty: (
+      state: ComponentState,
+      action: PayloadAction<{ index: number; property: Property }>
+    ) => {
+      state.properties[action.payload.index] = action.payload.property
     }
   }
 })
 
-export const { showPropertyForm, saveProperty } = componentSlice.actions
+export const { showPropertyForm, addProperty, updateProperty } = componentSlice.actions
 
 export default componentSlice.reducer

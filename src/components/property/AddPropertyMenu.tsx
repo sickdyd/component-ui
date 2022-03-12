@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import Button from 'components/form/base/Button'
-import { PropertyForm } from 'components/property/PropertyForm'
+import { CreateProperty } from 'components/property/CreateProperty'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { showPropertyForm } from 'redux/slices/componentSlice'
 
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 `
 
-export function AddProperty(): JSX.Element {
+export function AddPropertyMenu(): JSX.Element {
   const dispatch = useAppDispatch()
   const displayAddProperty = useAppSelector((state) => state.componentSlice.displayAddProperty)
 
@@ -25,11 +25,11 @@ export function AddProperty(): JSX.Element {
     <>
       <Wrapper>
         <h2>Properties</h2>+
-        <Button type="link" onClick={() => dispatch(showPropertyForm(true))}>
+        <Button variant="link" onClick={() => dispatch(showPropertyForm(true))}>
           Add new property
         </Button>
       </Wrapper>
-      {displayAddProperty && <PropertyForm />}
+      {displayAddProperty && <CreateProperty />}
     </>
   )
 }

@@ -3,26 +3,28 @@ import { MouseEventHandler, ReactNode } from 'react'
 
 type ButtonType = 'cancel' | 'confirm' | 'link'
 
-const linkStyles = {
-  'text-decoration': 'underline;',
-  'color': 'var(--blue);',
-  'padding': '0.5rem 0rem;'
-}
+const Wrapper = styled.div`
+  .link {
+    text-decoration: underline;
+    color: var(--blue);
+    padding: 0.5rem 0rem;
+  }
 
-const cancelStyles = {
-  'text-decoration': 'underline;',
-  'color': 'var(--dark-grey);',
-  'padding': '0.5rem 0rem;'
-}
+  .cancel {
+    text-decoration: underline;
+    color: var(--dark-grey);
+    padding: 0.5rem 0rem;
+  }
 
-const confirmStyles = {
-  'background-color': 'var(--blue);',
-  'font-weight': 'bold;',
-  'color': 'white;',
-  'padding': '0.5rem 1rem;'
-}
+  .confirm {
+    background-color: var(--blue);
+    font-weight: bold;
+    color: white;
+    padding: 0.5rem 1rem;
+  }
+`
 
-const StyledButton = styled.button<{ variant: ButtonType }>`
+const StyledButton = styled.button`
   all: unset;
   font-size: 14px;
   border-radius: var(--border-radius);
@@ -30,33 +32,22 @@ const StyledButton = styled.button<{ variant: ButtonType }>`
   &:hover {
     cursor: pointer;
   }
-
-  ${({ variant }) => {
-    switch (variant) {
-      case 'link':
-        return { ...linkStyles }
-      case 'confirm':
-        return { ...confirmStyles }
-      case 'cancel':
-        return { ...cancelStyles }
-      default:
-        return null
-    }
-  }}
 `
 
 export default function Button({
-  type = 'confirm',
+  variant = 'confirm',
   onClick,
   children
 }: {
-  type?: ButtonType
+  variant?: ButtonType
   onClick: MouseEventHandler<HTMLButtonElement>
   children: ReactNode
 }): JSX.Element {
   return (
-    <StyledButton onClick={onClick} variant={type}>
-      {children}
-    </StyledButton>
+    <Wrapper>
+      <StyledButton onClick={onClick} className={variant}>
+        {children}
+      </StyledButton>
+    </Wrapper>
   )
 }
