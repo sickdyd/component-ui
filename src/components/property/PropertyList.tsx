@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { EditProperty } from 'components/property/EditProperty'
+import { PropertyForm } from 'components/property/PropertyForm'
 import { useAppSelector } from 'redux/hooks'
 
 const Wrapper = styled.div``
@@ -10,7 +10,7 @@ export function PropertyList(): JSX.Element {
   return (
     <Wrapper>
       {properties.map((property, index) => (
-        <EditProperty key={index} propertyData={property} index={index} />
+        <PropertyForm key={index} property={property} index={index} />
       ))}
     </Wrapper>
   )

@@ -19,7 +19,7 @@ const SwitchValue = styled.div<{ isTrue?: boolean }>`
   padding: 0.2rem 0.8rem;
   font-size: 14px;
   border-right: 1px solid var(--light-grey);
-  background-color: ${({ isTrue }) => (isTrue ? 'var(--light-grey)' : 'transparent')};
+  background-color: ${({ isTrue }) => (isTrue ? 'var(--light-grey)' : 'white')};
 `
 
 export default function Switch({

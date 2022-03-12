@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import Button from 'components/form/base/Button'
-import { CreateProperty } from 'components/property/CreateProperty'
+import { PropertyForm } from 'components/property/PropertyForm'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { showPropertyForm } from 'redux/slices/componentSlice'
 
@@ -29,7 +29,7 @@ export function AddPropertyMenu(): JSX.Element {
           Add new property
         </Button>
       </Wrapper>
-      {displayAddProperty && <CreateProperty />}
+      {displayAddProperty && <PropertyForm />}
     </>
   )
 }

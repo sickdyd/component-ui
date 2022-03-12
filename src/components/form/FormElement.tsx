@@ -18,7 +18,7 @@ export default function FormElement({
   children
 }: {
   label: string
-  caption?: string
+  caption?: ReactNode
   vertical?: boolean
   children: ReactNode
 }): JSX.Element {

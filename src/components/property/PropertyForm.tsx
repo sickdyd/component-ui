@@ -6,13 +6,23 @@ import Switch from 'components/form/base/Switch'
 import TextArea from 'components/form/base/TextArea'
 import FormElement from 'components/form/FormElement'
 import { FormGroup } from 'components/form/FormGroup'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppDispatch } from 'redux/hooks'
-import { addProperty, showPropertyForm } from 'redux/slices/componentSlice'
+import { addProperty, showPropertyForm, updateProperty } from 'redux/slices/componentSlice'
 
 const Wrapper = styled.div`
   display: flex;
   padding: 1rem;
+
+  a,
+  a:visited,
+  a:active {
+    color: var(--grey);
+  }
+`
+
+const PropertyName = styled.div`
+  width: 40%;
 `
 
 const FormFields = styled.div`
@@ -26,17 +36,57 @@ const ControlsWrapper = styled.div`
   margin: 1rem 0;
 `
 
-export function CreateProperty(): JSX.Element {
-  const [propertyName, setPropertyName] = useState('')
-  const [displayName, setDisplayName] = useState('')
-  const [description, setDescription] = useState('')
-  const [propertyType, setPropertyType] = useState<PropertyType>('one of')
-  const [propertyControl, setPropertyControl] = useState<PropertyControl>('textarea')
-  const [defaultValue, setDefaulValue] = useState('')
-  const [options, setOptions] = useState('')
-  const [boolean, setBoolean] = useState<boolean>(false)
+export function PropertyForm({
+  index,
+  property
+}: {
+  index?: number
+  property?: Property
+}): JSX.Element {
+  const [propertyName, setPropertyName] = useState(property?.propertyName || '')
+  const [displayName, setDisplayName] = useState(property?.displayName || '')
+  const [description, setDescription] = useState(property?.description || '')
+  const [propertyType, setPropertyType] = useState<PropertyType>(property?.propertyType || 'one of')
+  const [propertyControl, setPropertyControl] = useState<PropertyControl>(
+    property?.propertyControl || 'select'
+  )
+  const [defaultValue, setDefaulValue] = useState(property?.defaultValue || '')
+  const [options, setOptions] = useState(property?.options || '')
+  const [boolean, setBoolean] = useState<boolean>(property?.boolean || false)
 
   const dispatch = useAppDispatch()
+
+  const isEditing = index !== undefined
+
+  useEffect(() => {
+    index &&
+      dispatch(
+        updateProperty({
+          index,
+          property: {
+            propertyName,
+            displayName,
+            description,
+            propertyType,
+            propertyControl,
+            defaultValue,
+            options,
+            boolean
+          }
+        })
+      )
+  }, [
+    propertyName,
+    displayName,
+    description,
+    propertyType,
+    propertyControl,
+    defaultValue,
+    options,
+    boolean,
+    dispatch,
+    index
+  ])
 
   const handleAddProperty = () => {
     dispatch(
@@ -60,11 +110,20 @@ export function CreateProperty(): JSX.Element {
     { name: 'boolean', value: 'boolean' }
   ]
 
+  const propertyNameCaption = isEditing ? undefined : 'name of the property given in the code'
+  const propertyControlCaption = isEditing ? undefined : (
+    <>
+      type of control displayed in editor's properties panel. <a href="/">Learn more</a> about
+      control types
+    </>
+  )
+
   return (
     <Wrapper>
+      {isEditing && <PropertyName>{propertyName || 'Type a name...'}</PropertyName>}
       <FormFields>
         <FormGroup>
-          <FormElement label="Property name" caption="name of the property given in the code">
+          <FormElement label="Property name" caption={propertyNameCaption}>
             <Input value={propertyName} onChange={({ target }) => setPropertyName(target.value)} />
           </FormElement>
           <FormElement label="Display name">
@@ -81,7 +140,7 @@ export function CreateProperty(): JSX.Element {
           </FormElement>
           {propertyType === 'one of' && (
             <>
-              <FormElement label="Property control">
+              <FormElement label="Property control" caption={propertyControlCaption}>
                 <DropDown
                   elements={[{ value: 'select', name: 'select' }]}
                   onChange={({ target }) => setPropertyControl(target.value)}
@@ -114,12 +173,14 @@ export function CreateProperty(): JSX.Element {
             </FormElement>
           )}
         </FormGroup>
-        <ControlsWrapper>
-          <Button variant="cancel" onClick={() => dispatch(showPropertyForm(false))}>
-            Cancel
-          </Button>
-          <Button onClick={handleAddProperty}>Add</Button>
-        </ControlsWrapper>
+        {!isEditing && (
+          <ControlsWrapper>
+            <Button variant="cancel" onClick={() => dispatch(showPropertyForm(false))}>
+              Cancel
+            </Button>
+            <Button onClick={handleAddProperty}>Add</Button>
+          </ControlsWrapper>
+        )}
       </FormFields>
     </Wrapper>
   )
