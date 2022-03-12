@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   }
 `
 
-export function ExpandButton({
+export default function ExpandButton({
   expanded,
   onClick
 }: {

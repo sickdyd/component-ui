@@ -1,20 +1,18 @@
 import styled from '@emotion/styled'
-import { AddPropertyMenu } from 'components/property/AddPropertyMenu'
-import { PropertyList } from 'components/property/PropertyList'
+import ComponentPreview from 'components/preview/ComponentPreview'
+import AddPropertyMenu from 'components/property/AddPropertyMenu'
+import PropertyList from 'components/property/PropertyList'
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   padding: 2rem;
 `
 
 export default function App() {
   return (
     <Wrapper>
-      <header></header>
-      <main>
-        <AddPropertyMenu />
-        <PropertyList />
-      </main>
-      <footer></footer>
+      <ComponentPreview />
+      <AddPropertyMenu />
+      <PropertyList />
     </Wrapper>
   )
 }

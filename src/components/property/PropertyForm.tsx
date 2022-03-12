@@ -5,10 +5,10 @@ import Input from 'components/form/base/Input'
 import Switch from 'components/form/base/Switch'
 import TextArea from 'components/form/base/TextArea'
 import FormElement from 'components/form/FormElement'
-import { FormGroup } from 'components/form/FormGroup'
-import { DeleteProperty } from 'components/property/DeleteProperty'
-import { ExpandButton } from 'components/property/ExpandButton'
-import { ToggleVisibility } from 'components/property/ToggleVisibility'
+import FormGroup from 'components/form/FormGroup'
+import DeleteProperty from 'components/property/DeleteProperty'
+import ExpandButton from 'components/property/ExpandButton'
+import ToggleVisibility from 'components/property/ToggleVisibility'
 import { useEffect, useState } from 'react'
 import { useAppDispatch } from 'redux/hooks'
 import {
@@ -60,7 +60,7 @@ const ControlsWrapper = styled.div`
   margin: 1rem 0;
 `
 
-export function PropertyForm({
+export default function PropertyForm({
   index,
   property
 }: {

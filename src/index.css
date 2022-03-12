@@ -6,6 +6,8 @@
   --blue: rgb(0, 108, 255);
 
   --border-radius: 2px;
+
+  --icon-size: 0.8rem;
 }
 
 body {

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import Button from 'components/form/base/Button'
-import { PropertyForm } from 'components/property/PropertyForm'
+import PropertyForm from 'components/property/PropertyForm'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { showPropertyForm } from 'redux/slices/componentSlice'
 
@@ -17,7 +17,7 @@ const Wrapper = styled.div`
   }
 `
 
-export function AddPropertyMenu(): JSX.Element {
+export default function AddPropertyMenu(): JSX.Element {
   const dispatch = useAppDispatch()
   const displayAddProperty = useAppSelector((state) => state.componentSlice.displayAddProperty)
 

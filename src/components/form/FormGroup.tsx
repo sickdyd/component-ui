@@ -7,6 +7,6 @@ const Wrapper = styled.div`
   gap: 1rem;
 `
 
-export function FormGroup({ children }: { children: ReactNode }): JSX.Element {
+export default function FormGroup({ children }: { children: ReactNode }): JSX.Element {
   return <Wrapper>{children}</Wrapper>
 }

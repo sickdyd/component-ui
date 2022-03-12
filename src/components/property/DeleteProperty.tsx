@@ -7,12 +7,12 @@ const Wrapper = styled.div`
   }
 
   svg {
-    font-size: 0.8rem;
+    font-size: var(--icon-size);
     color: var(--dark-grey);
   }
 `
 
-export function DeleteProperty({ onClick }: { onClick: () => void }): JSX.Element {
+export default function DeleteProperty({ onClick }: { onClick: () => void }): JSX.Element {
   return (
     <Wrapper onClick={onClick}>
       <Delete />
