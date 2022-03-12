@@ -60,108 +60,41 @@ const ControlsWrapper = styled.div`
   margin: 1rem 0;
 `
 
+const initialData: Property = {
+  propertyName: '',
+  displayName: '',
+  description: '',
+  propertyType: 'one of',
+  propertyControl: 'select',
+  options: '',
+  defaultValue: '',
+  visible: true
+}
+
 export default function PropertyForm({
   index,
-  property
+  propertyData
 }: {
   index?: number
-  property?: Property
+  propertyData?: Property
 }): JSX.Element {
-  const [propertyName, setPropertyName] = useState<string>(property?.propertyName || '')
-  const [displayName, setDisplayName] = useState<string>(property?.displayName || '')
-  const [description, setDescription] = useState<string>(property?.description || '')
-  const [propertyType, setPropertyType] = useState<PropertyType>(property?.propertyType || 'one of')
-  const [propertyControl, setPropertyControl] = useState<PropertyControl>(
-    property?.propertyControl || 'select'
-  )
-  const [defaultValue, setDefaulValue] = useState<string | boolean>(property?.defaultValue || '')
-  const [options, setOptions] = useState<string>(property?.options || '')
-  const [boolean, setBoolean] = useState<boolean>(property?.boolean || false)
-  const [visible, setVisible] = useState<boolean>(property?.visible || true)
-
   const isEditing = index !== undefined
-
+  const [property, setProperty] = useState<Property>(propertyData || initialData)
   const [expanded, setExpanded] = useState<boolean>(!isEditing)
-
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    switch (propertyType) {
-      case 'one of':
-        setPropertyControl('select')
-        setOptions('')
-        setDefaulValue('')
-        break
-      case 'node':
-        setPropertyControl('select')
-        setOptions('')
-        setDefaulValue('')
-        break
-      case 'boolean':
-        setPropertyControl('')
-        setOptions('')
-        setDefaulValue(true)
-        break
-      default:
-        break
+    if (index) {
+      dispatch(updateProperty({ index, property }))
     }
-  }, [propertyType])
-
-  useEffect(() => {
-    index &&
-      dispatch(
-        updateProperty({
-          index,
-          property: {
-            propertyName,
-            displayName,
-            description,
-            propertyType,
-            propertyControl,
-            defaultValue,
-            options,
-            boolean,
-            visible
-          }
-        })
-      )
-  }, [
-    propertyName,
-    displayName,
-    description,
-    propertyType,
-    propertyControl,
-    defaultValue,
-    options,
-    boolean,
-    visible,
-    dispatch,
-    index
-  ])
+  }, [property, dispatch, index])
 
   const handleAddProperty = () => {
-    dispatch(
-      addProperty({
-        propertyName,
-        displayName,
-        description,
-        propertyType,
-        propertyControl,
-        defaultValue,
-        options,
-        visible,
-        boolean
-      })
-    )
-
+    dispatch(addProperty(property))
     dispatch(showPropertyForm(false))
   }
 
-  const propertyTypes = [
-    { name: 'one of', value: 'one of' },
-    { name: 'node', value: 'node' },
-    { name: 'boolean', value: 'boolean' }
-  ]
+  const propertyTypes = ['one of', 'node', 'boolean']
 
   const propertyNameCaption = isEditing ? undefined : 'name of the property given in the code'
   const propertyControlCaption = isEditing ? undefined : (
@@ -172,11 +105,14 @@ export default function PropertyForm({
   )
 
   return (
-    <Wrapper visible={visible}>
+    <Wrapper visible={property.visible}>
       {isEditing && (
         <PropertyName>
-          {propertyName || 'Type a name...'}
-          <ToggleVisibility visible={visible} onClick={() => setVisible((prev) => !prev)} />
+          {property.propertyName || 'Type a name...'}
+          <ToggleVisibility
+            visible={property.visible}
+            onClick={() => setProperty((prev) => ({ ...prev, visible: !prev.visible }))}
+          />
           <DeleteProperty
             onClick={() => {
               dispatch(deleteProperty(index))
@@ -194,65 +130,92 @@ export default function PropertyForm({
             <FormGroup>
               <FormElement label="Property name" caption={propertyNameCaption}>
                 <Input
-                  value={propertyName}
-                  onChange={({ target }) => setPropertyName(target.value)}
+                  value={property.propertyName}
+                  onChange={({ target }) =>
+                    setProperty((prev) => ({ ...prev, propertyName: target.value }))
+                  }
                 />
               </FormElement>
               <FormElement label="Display name">
                 <Input
-                  value={displayName}
-                  onChange={({ target }) => setDisplayName(target.value)}
+                  value={property.displayName}
+                  onChange={({ target }) =>
+                    setProperty((prev) => ({ ...prev, displayName: target.value }))
+                  }
                 />
               </FormElement>
               <FormElement label="Description" vertical>
                 <TextArea
-                  value={description}
-                  onChange={({ target }) => setDescription(target.value)}
+                  value={property.description}
+                  onChange={({ target }) =>
+                    setProperty((prev) => ({ ...prev, description: target.value }))
+                  }
                 />
               </FormElement>
               <FormElement label="Property type">
                 <DropDown
                   elements={propertyTypes}
-                  onChange={({ target }) => setPropertyType(target.value)}
+                  onChange={({ target }) =>
+                    setProperty((prev) => ({ ...prev, propertyType: target.value }))
+                  }
                 />
               </FormElement>
-              {propertyType === 'one of' && (
+              {property.propertyType === 'one of' && (
                 <>
                   <FormElement label="Property control" caption={propertyControlCaption}>
                     <DropDown
-                      elements={[{ value: 'select', name: 'select' }]}
-                      onChange={({ target }) => setPropertyControl(target.value)}
+                      elements={['select']}
+                      onChange={({ target }) =>
+                        setProperty((prev) => ({ ...prev, propertyControl: target.value }))
+                      }
                     />
                   </FormElement>
                   <FormElement label="Options" caption="list options separated by comma" vertical>
-                    <TextArea value={options} onChange={({ target }) => setOptions(target.value)} />
+                    <TextArea
+                      value={property.options}
+                      onChange={({ target }) =>
+                        setProperty((prev) => ({ ...prev, options: target.value }))
+                      }
+                    />
                   </FormElement>
                   <FormElement label="Default value">
                     <DropDown
-                      elements={options
-                        .split(',')
-                        .map((option) => ({ value: option, name: option }))}
-                      onChange={({ target }) => setDefaulValue(target.value)}
+                      elements={
+                        property.options ? property.options.split(',').map((option) => option) : []
+                      }
+                      onChange={({ target }) =>
+                        setProperty((prev) => ({ ...prev, defaultValue: target.value }))
+                      }
                     />
                   </FormElement>
                 </>
               )}
-              {propertyType === 'node' && (
+              {property.propertyType === 'node' && (
                 <>
                   <FormElement label="Property control">
-                    <DropDown elements={[{ value: 'textarea', name: 'textarea' }]} />
+                    <DropDown
+                      elements={['textarea']}
+                      onChange={({ target }) =>
+                        setProperty((prev) => ({ ...prev, propertyControl: target.value }))
+                      }
+                    />
                   </FormElement>
                   <FormElement label="Default value" vertical>
                     <TextArea
-                      value={typeof defaultValue === 'string' ? defaultValue : ''}
-                      onChange={({ target }) => setDefaulValue(target.value)}
+                      value={typeof property.defaultValue === 'string' ? property.defaultValue : ''}
+                      onChange={({ target }) =>
+                        setProperty((prev) => ({ ...prev, defaultValue: target.value }))
+                      }
                     />
                   </FormElement>
                 </>
               )}
-              {propertyType === 'boolean' && (
-                <FormElement label="Description">
-                  <Switch isTrue={boolean} onClick={(isTrue) => setBoolean(isTrue)} />
+              {property.propertyType === 'boolean' && (
+                <FormElement label="Default value">
+                  <Switch
+                    isTrue={property.boolean || true}
+                    onClick={(isTrue) => setProperty((prev) => ({ ...prev, boolean: isTrue }))}
+                  />
                 </FormElement>
               )}
             </FormGroup>

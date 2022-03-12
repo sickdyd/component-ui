@@ -10,7 +10,7 @@ export default function PropertyList(): JSX.Element {
   return (
     <Wrapper>
       {properties.map((property, index) => (
-        <PropertyForm key={index} property={property} index={index} />
+        <PropertyForm key={index} propertyData={property} index={index} />
       ))}
     </Wrapper>
   )

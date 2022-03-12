@@ -46,6 +46,7 @@ export default function ComponentPreview(): JSX.Element {
       </Heading>
       <h2>Component Preview</h2>
       <Button {...getComponentProps(properties)}>SIGN UP</Button>
+      <Button variant="text">SIGN PU</Button>
     </Wrapper>
   )
 }
