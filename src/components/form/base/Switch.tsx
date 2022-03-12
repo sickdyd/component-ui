@@ -5,7 +5,7 @@ const SwitchWrapper = styled.div`
   display: inline;
   display: flex;
   border: 1px solid var(--light-grey);
-  border-radius: 2px;
+  border-radius: var(--border-radius);
   width: fit-content;
 `
 

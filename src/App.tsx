@@ -1,15 +1,18 @@
-import { Property } from 'components/property/Property'
+import styled from '@emotion/styled'
+import { AddProperty } from 'components/property/AddProperty'
 
-function App() {
+const Wrapper = styled.div`
+  padding: 2rem;
+`
+
+export default function App() {
   return (
-    <div>
+    <Wrapper>
       <header></header>
       <main>
-        <Property />
+        <AddProperty />
       </main>
       <footer></footer>
-    </div>
+    </Wrapper>
   )
 }
-
-export default App
