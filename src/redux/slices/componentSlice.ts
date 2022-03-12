@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: State = {
+type ComponentState = {
+  displayAddProperty: boolean
+  properties: Property[]
+}
+
+const initialState: ComponentState = {
   displayAddProperty: false,
   properties: []
 }
@@ -9,10 +14,10 @@ export const componentSlice = createSlice({
   name: 'component',
   initialState: initialState,
   reducers: {
-    showPropertyForm: (state: State, action: PayloadAction<boolean>) => {
+    showPropertyForm: (state: ComponentState, action: PayloadAction<boolean>) => {
       state.displayAddProperty = action.payload
     },
-    saveProperty: (state: State, action: PayloadAction<Property>) => {
+    saveProperty: (state: ComponentState, action: PayloadAction<Property>) => {
       state.properties.push(action.payload)
     }
   }
