@@ -9,6 +9,16 @@ const initialState: ComponentState = {
   displayAddProperty: false,
   properties: [
     {
+      propertyName: 'Disabled',
+      displayName: 'Disabled',
+      description: 'It disables the button',
+      visible: false,
+      propertyType: {
+        type: 'boolean',
+        defaultValue: true
+      }
+    },
+    {
       propertyName: 'Children',
       displayName: 'Children',
       description: 'To use a different element as children',

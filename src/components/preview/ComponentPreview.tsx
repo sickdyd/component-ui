@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import GearIcon from '@mui/icons-material/Settings'
 import Button from '@mui/material/Button'
 import ToggleVisibility from 'components/icons/ToggleVisibility'
-import { createElement } from 'react'
+import { createElement, useState } from 'react'
 import { useAppSelector } from 'redux/hooks'
 
 const Wrapper = styled.div`
@@ -18,6 +18,10 @@ const Heading = styled.div`
 const StyledGearIcon = styled(GearIcon)`
   color: var(--grey);
   font-size: var(--icon-size);
+
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const getPropsAndChildren = (properties: Property[] = []): any => {
@@ -40,7 +44,8 @@ const getPropsAndChildren = (properties: Property[] = []): any => {
           property.propertyType.defaultValue
         )
       } else if (property.propertyType.defaultValue) {
-        props[property.propertyName.toLowerCase()] = property?.propertyType?.defaultValue
+        property.propertyType.defaultValue &&
+          (props[property.propertyName.toLowerCase()] = property.propertyType.defaultValue)
       }
     }
   })
@@ -49,6 +54,7 @@ const getPropsAndChildren = (properties: Property[] = []): any => {
 }
 
 export default function ComponentPreview(): JSX.Element {
+  const [visible, setVisible] = useState<boolean>(true)
   const properties = useAppSelector((state) => state.componentSlice.properties)
   const { props, children } = getPropsAndChildren(properties)
 
@@ -56,7 +62,7 @@ export default function ComponentPreview(): JSX.Element {
     <Wrapper>
       <Heading>
         <h1>Button</h1>
-        <ToggleVisibility visible={true} onClick={() => {}} />
+        <ToggleVisibility visible={visible} onClick={() => setVisible((prev) => !prev)} />
         <StyledGearIcon />
       </Heading>
       <h2>Component Preview</h2>
