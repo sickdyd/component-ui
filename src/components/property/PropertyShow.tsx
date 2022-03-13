@@ -49,7 +49,7 @@ export default function PropertyShow({
   property: Property
 }): JSX.Element {
   const dispatch = useAppDispatch()
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
 
   const onChangeHandler = (property: Property) => {
     dispatch(updateProperty({ index, property }))
