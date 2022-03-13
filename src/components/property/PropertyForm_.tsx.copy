@@ -1,0 +1,298 @@
+// import styled from '@emotion/styled'
+// import Button from 'components/form/Button'
+// import DropDown from 'components/form/DropDown'
+// import FormElement from 'components/form/FormElement'
+// import FormGroup from 'components/form/FormGroup'
+// import Input from 'components/form/Input'
+// import Switch from 'components/form/Switch'
+// import TextArea from 'components/form/TextArea'
+// import DeleteProperty from 'components/icons/DeleteProperty'
+// import ExpandButton from 'components/icons/ExpandButton'
+// import ToggleVisibility from 'components/icons/ToggleVisibility'
+// import { useEffect, useState } from 'react'
+// import { useAppDispatch } from 'redux/hooks'
+// import {
+//   addProperty,
+//   deleteProperty,
+//   showPropertyForm,
+//   updateProperty
+// } from 'redux/slices/componentSlice'
+
+// const Wrapper = styled.div<{ visible: boolean }>`
+//   display: flex;
+//   padding: 1.25rem 1rem;
+//   border-bottom: 1px solid var(--light-grey);
+
+//   a,
+//   a:visited,
+//   a:active {
+//     color: var(--grey);
+//   }
+
+//   div,
+//   span,
+//   input,
+//   button,
+//   label,
+//   textarea,
+//   select {
+//     color: ${({ visible }) => (visible ? 'inherit' : 'var(--light-grey)')};
+//   }
+// `
+
+// const PropertyName = styled.div`
+//   display: flex;
+//   white-space: nowrap;
+//   gap: 1rem;
+//   width: 40%;
+//   font-size: 1.1rem;
+// `
+
+// const FormFields = styled.div`
+//   position: relative;
+//   width: 100%;
+// `
+
+// const ControlsWrapper = styled.div`
+//   display: flex;
+//   justify-content: flex-end;
+//   gap: 1rem;
+//   margin: 1rem 0;
+// `
+
+// const initialData: Property = {
+//   propertyName: '',
+//   displayName: '',
+//   description: '',
+//   visible: true
+//   // propertyType: { type: 'one of', propertyControl: '', options: '', defaultValue: '' }
+// }
+
+// export default function _PropertyForm({
+//   index,
+//   propertyData
+// }: {
+//   index?: number
+//   propertyData?: Property
+// }): JSX.Element {
+//   const isEditing = index !== undefined
+//   const [property, setProperty] = useState<Property>(propertyData || initialData)
+//   const [expanded, setExpanded] = useState<boolean>(!isEditing)
+//   const dispatch = useAppDispatch()
+
+//   useEffect(() => {
+//     if (index !== undefined) {
+//       dispatch(updateProperty({ index, property }))
+//     }
+//   }, [property, dispatch, index])
+
+//   // useEffect(() => {
+//   //   console.log('resetting')
+//   //   switch (property.propertyType.type) {
+//   //     case 'one of':
+//   //       setProperty((prev) => ({
+//   //         ...prev,
+//   //         propertyType: { type: 'one of', propertyControl: 'select', options: '', defaultValue: '' }
+//   //       }))
+//   //       break
+//   //     case 'node':
+//   //       setProperty((prev) => ({
+//   //         ...prev,
+//   //         propertyType: { type: 'one of', propertyControl: 'p', options: '', defaultValue: '' }
+//   //       }))
+//   //       break
+//   //     case 'boolean':
+//   //       setProperty((prev) => ({
+//   //         ...prev,
+//   //         propertyType: {
+//   //           type: 'one of',
+//   //           defaultValue: ''
+//   //         } as BooleanType
+//   //       }))
+//   //       break
+//   //     default:
+//   //       break
+//   //   }
+//   // }, [property.propertyType.type])
+
+//   const handleAddProperty = () => {
+//     dispatch(addProperty(property))
+//     dispatch(showPropertyForm(false))
+//   }
+
+//   const propertyTypes = ['one of', 'node', 'boolean']
+
+//   const propertyNameCaption = isEditing ? undefined : 'name of the property given in the code'
+//   const propertyControlCaption = isEditing ? undefined : (
+//     <>
+//       type of control displayed in editor's properties panel. <a href="/">Learn more</a> about
+//       control types
+//     </>
+//   )
+
+//   return (
+//     <Wrapper visible={property.visible}>
+//       {isEditing && (
+//         <PropertyName>
+//           {property.propertyName || 'Type a name...'}
+//           <ToggleVisibility
+//             visible={property.visible}
+//             onClick={() => setProperty((prev) => ({ ...prev, visible: !prev.visible }))}
+//           />
+//           <DeleteProperty
+//             onClick={() => {
+//               dispatch(deleteProperty(index))
+//             }}
+//           />
+//         </PropertyName>
+//       )}
+
+//       <FormFields>
+//         {isEditing && (
+//           <ExpandButton expanded={expanded} onClick={() => setExpanded((prev) => !prev)} />
+//         )}
+//         {expanded && (
+//           <>
+//             <FormGroup>
+//               <FormElement label="Property name" caption={propertyNameCaption}>
+//                 <Input
+//                   value={property.propertyName}
+//                   onChange={({ target }) =>
+//                     setProperty((prev) => ({ ...prev, propertyName: target.value }))
+//                   }
+//                 />
+//               </FormElement>
+//               <FormElement label="Display name">
+//                 <Input
+//                   value={property.displayName}
+//                   onChange={({ target }) =>
+//                     setProperty((prev) => ({ ...prev, displayName: target.value }))
+//                   }
+//                 />
+//               </FormElement>
+//               <FormElement label="Description" vertical>
+//                 <TextArea
+//                   value={property.description}
+//                   onChange={({ target }) =>
+//                     setProperty((prev) => ({ ...prev, description: target.value }))
+//                   }
+//                 />
+//               </FormElement>
+//               <FormElement label="Property type">
+//                 <DropDown
+//                   elements={propertyTypes}
+//                   selectedValue={property.propertyType.type}
+//                   onChange={({ target }) =>
+//                     setProperty((prev) => ({
+//                       ...prev,
+//                       propertyType: { ...property.propertyType, type: target.value }
+//                     }))
+//                   }
+//                 />
+//               </FormElement>
+//               {property.propertyType.type === 'one of' && (
+//                 <>
+//                   <FormElement label="Property control" caption={propertyControlCaption}>
+//                     <DropDown
+//                       elements={['', 'select']}
+//                       selectedValue={property.propertyType.propertyControl}
+//                       onChange={({ target }) =>
+//                         setProperty((prev) => ({
+//                           ...prev,
+//                           propertyType: { ...property.propertyType, propertyControl: target.value }
+//                         }))
+//                       }
+//                     />
+//                   </FormElement>
+//                   <FormElement label="Options" caption="list options separated by comma" vertical>
+//                     <TextArea
+//                       value={property.propertyType.options}
+//                       onChange={({ target }) =>
+//                         setProperty((prev) => ({
+//                           ...prev,
+//                           propertyType: { ...property.propertyType, options: target.value }
+//                         }))
+//                       }
+//                     />
+//                   </FormElement>
+//                   <FormElement label="Default value">
+//                     <DropDown
+//                       elements={
+//                         property.propertyType.options
+//                           ? [''].concat(
+//                               property.propertyType.options.split(',').map((option) => option)
+//                             )
+//                           : []
+//                       }
+//                       selectedValue={property.propertyType.defaultValue}
+//                       onChange={({ target }) =>
+//                         setProperty((prev) => ({
+//                           ...prev,
+//                           propertyType: { ...property.propertyType, defaultValue: target.value }
+//                         }))
+//                       }
+//                     />
+//                   </FormElement>
+//                 </>
+//               )}
+//               {property.propertyType.type === 'node' && (
+//                 <>
+//                   <FormElement label="Property control">
+//                     <DropDown
+//                       elements={['', 'p']}
+//                       selectedValue={property.propertyType.defaultValue}
+//                       onChange={({ target }) =>
+//                         setProperty((prev) => ({
+//                           ...prev,
+//                           propertyType: { ...property.propertyType, propertyControl: target.value }
+//                         }))
+//                       }
+//                     />
+//                   </FormElement>
+//                   <FormElement label="Default value" vertical>
+//                     <TextArea
+//                       value={property.propertyType.defaultValue}
+//                       onChange={({ target }) => {
+//                         setProperty((prev) => ({
+//                           ...prev,
+//                           propertyType: {
+//                             ...property.propertyType,
+//                             defaultValue: target.value
+//                           } as NodeType
+//                         }))
+//                       }}
+//                     />
+//                   </FormElement>
+//                 </>
+//               )}
+//               {property.propertyType.type === 'boolean' && (
+//                 <FormElement label="Default value">
+//                   <Switch
+//                     isTrue={property.propertyType.defaultValue}
+//                     onClick={(isTrue: boolean) =>
+//                       setProperty(
+//                         (prev) =>
+//                           ({
+//                             ...prev,
+//                             propertyType: { ...property.propertyType, defaultValue: isTrue }
+//                           } as BooleanType)
+//                       )
+//                     }
+//                   />
+//                 </FormElement>
+//               )}
+//             </FormGroup>
+//             {!isEditing && (
+//               <ControlsWrapper>
+//                 <Button variant="cancel" onClick={() => dispatch(showPropertyForm(false))}>
+//                   Cancel
+//                 </Button>
+//                 <Button onClick={handleAddProperty}>Add</Button>
+//               </ControlsWrapper>
+//             )}
+//           </>
+//         )}
+//       </FormFields>
+//     </Wrapper>
+//   )
+// }

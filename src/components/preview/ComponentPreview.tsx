@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 import GearIcon from '@mui/icons-material/Settings'
 import Button from '@mui/material/Button'
-import ToggleVisibility from 'components/property/ToggleVisibility'
+import ToggleVisibility from 'components/icons/ToggleVisibility'
+import { createElement } from 'react'
 import { useAppSelector } from 'redux/hooks'
 
 const Wrapper = styled.div`
@@ -19,23 +20,29 @@ const StyledGearIcon = styled(GearIcon)`
   font-size: var(--icon-size);
 `
 
-const getComponentProps = (properties: Property[] = []): any => {
+const getPropsAndChildren = (properties: Property[] = []): any => {
   const props = {} as any
+  let children = null
 
-  properties.forEach(
-    (property) =>
-      property?.visible &&
-      property?.defaultValue &&
-      (props[property.propertyName.toLowerCase()] = property?.defaultValue)
-  )
+  properties.forEach((property) => {
+    if (property?.visible) {
+      if (
+        property?.propertyName.toLowerCase() === 'children' &&
+        property?.propertyType.type === 'node'
+      ) {
+        children = createElement(property?.propertyType?.propertyControl)
+      } else if (property?.propertyType.defaultValue) {
+        props[property.propertyName.toLowerCase()] = property?.propertyType?.defaultValue
+      }
+    }
+  })
 
-  console.log(props)
-
-  return props
+  return { props, children }
 }
 
 export default function ComponentPreview(): JSX.Element {
   const properties = useAppSelector((state) => state.componentSlice.properties)
+  const { props, children } = getPropsAndChildren(properties)
 
   return (
     <Wrapper>
@@ -45,8 +52,7 @@ export default function ComponentPreview(): JSX.Element {
         <StyledGearIcon />
       </Heading>
       <h2>Component Preview</h2>
-      <Button {...getComponentProps(properties)}>SIGN UP</Button>
-      <Button variant="text">SIGN PU</Button>
+      <Button {...props}>{children || 'SIGN UP'}</Button>
     </Wrapper>
   )
 }

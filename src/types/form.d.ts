@@ -8,4 +8,5 @@ interface InputProps extends BaseProps {
 
 interface DropDownProps extends InputProps {
   elements: string[]
+  selectedValue?: string
 }

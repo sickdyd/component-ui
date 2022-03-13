@@ -26,3 +26,9 @@ code {
   box-sizing: border-box;
   font-family: Lato, Arial;
 }
+
+a,
+a:visited,
+a:active {
+  color: var(--grey);
+}

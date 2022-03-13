@@ -8,9 +8,13 @@ const Select = styled.select`
   min-width: 100px;
 `
 
-export default function DropDown({ elements, onChange }: DropDownProps): JSX.Element {
+export default function DropDown({
+  selectedValue,
+  elements,
+  onChange
+}: DropDownProps): JSX.Element {
   return (
-    <Select onChange={onChange}>
+    <Select onChange={onChange} defaultValue={selectedValue}>
       {elements.map((element, index) => (
         <option key={index} value={element}>
           {element}

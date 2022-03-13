@@ -8,7 +8,7 @@ const Wrapper = styled.div`
   align-items: center;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 1rem;
   background-color: var(--light-grey);
 
   &:hover {

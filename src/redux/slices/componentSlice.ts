@@ -12,34 +12,38 @@ const initialState: ComponentState = {
       propertyName: 'Variant',
       displayName: 'Variant',
       description: 'The component variant',
-      propertyType: 'one of',
-      propertyControl: 'select',
-      options: 'contained,outlined,text',
-      defaultValue: 'contained',
-      visible: true
+      visible: true,
+      propertyType: {
+        type: 'one of',
+        propertyControl: 'select',
+        options: 'contained,outlined,text',
+        defaultValue: 'contained'
+      }
     },
     {
       propertyName: 'Color',
       displayName: 'Color',
       description: 'The text color',
-      propertyType: 'one of',
-      propertyControl: 'select',
-      options: 'inherit,primary,secondary,success,error,info,warning',
-      defaultValue: 'primary',
-      visible: true
+      visible: true,
+      propertyType: {
+        type: 'one of',
+        propertyControl: 'select',
+        options: 'inherit,primary,secondary,success,error,info,warning',
+        defaultValue: 'success'
+      }
     }
   ]
 }
 
 export const componentSlice = createSlice({
   name: 'component',
-  initialState: initialState,
+  initialState,
   reducers: {
     showPropertyForm: (state: ComponentState, action: PayloadAction<boolean>) => {
       state.displayAddProperty = action.payload
     },
-    addProperty: (state: ComponentState, action: PayloadAction<Property>) => {
-      state.properties.push(action.payload)
+    addProperty: (state: ComponentState, action: PayloadAction<Property | undefined>) => {
+      action.payload && state.properties.push(action.payload)
     },
     updateProperty: (
       state: ComponentState,

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
-import Caption from 'components/form/base/Caption'
-import Label from 'components/form/base/Label'
+import Caption from 'components/form/Caption'
+import Label from 'components/form/Label'
 import { ReactNode } from 'react'
 
 const Wrapper = styled.div``

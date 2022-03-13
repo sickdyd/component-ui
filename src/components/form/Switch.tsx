@@ -24,17 +24,17 @@ const SwitchValue = styled.div<{ isTrue?: boolean }>`
 
 export default function Switch({
   onClick,
-  isTrue = false
+  isTrue
 }: {
   onClick: (isTrue: boolean) => void
   isTrue: boolean
 }) {
   return (
     <SwitchWrapper>
-      <SwitchValue isTrue={isTrue} onClick={() => onClick(true)}>
+      <SwitchValue isTrue={Boolean(isTrue)} onClick={() => onClick(true)}>
         True
       </SwitchValue>
-      <SwitchValue isTrue={!isTrue} onClick={() => onClick(false)}>
+      <SwitchValue isTrue={!Boolean(isTrue)} onClick={() => onClick(false)}>
         False
       </SwitchValue>
     </SwitchWrapper>
