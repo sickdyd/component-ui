@@ -6,6 +6,8 @@ The only Material UI component used is the `Button` in the preview, every other 
 
 ## Screenshots
 
+<img width="924" alt="Screen Shot 2022-03-13 at 22 03 51" src="https://user-images.githubusercontent.com/45290018/158060663-5061943c-5617-4ab4-8c44-e904468577b9.png">
+
 ### Adding a new property
 
 ![adding](https://user-images.githubusercontent.com/45290018/158058207-0dcedd43-253e-478b-9501-94815942f268.gif)
