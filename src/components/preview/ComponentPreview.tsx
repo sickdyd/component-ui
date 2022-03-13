@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import Button from '@mui/material/Button'
 import Settings from 'components/icons/Settings'
 import ToggleVisibility from 'components/icons/ToggleVisibility'
+import camelCase from 'lodash/camelCase'
 import { createElement, useState } from 'react'
 import { useAppSelector } from 'redux/hooks'
 
@@ -20,7 +21,7 @@ const getPropsAndChildren = (properties: Property[] = []): any => {
   let children = null
 
   properties.forEach((property) => {
-    const formattedPropertyName = property.propertyName.toLowerCase()
+    const formattedPropertyName = camelCase(property.propertyName)
 
     if (property.visible) {
       if (
@@ -36,7 +37,7 @@ const getPropsAndChildren = (properties: Property[] = []): any => {
         )
       } else if (property.propertyType.defaultValue) {
         property.propertyType.defaultValue &&
-          (props[property.propertyName.toLowerCase()] = property.propertyType.defaultValue)
+          (props[formattedPropertyName] = property.propertyType.defaultValue)
       }
     }
   })

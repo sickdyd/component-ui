@@ -19,6 +19,16 @@ const initialState: ComponentState = {
       }
     },
     {
+      propertyName: 'Disable Ripple',
+      displayName: 'Disabled Ripple',
+      description: 'It disables the ripple effect',
+      visible: false,
+      propertyType: {
+        type: 'boolean',
+        defaultValue: true
+      }
+    },
+    {
       propertyName: 'Children',
       displayName: 'Children',
       description: 'To use a different element as children',
