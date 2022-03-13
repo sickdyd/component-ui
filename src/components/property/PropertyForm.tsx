@@ -57,7 +57,7 @@ export default function PropertyForm({
         <FormElement label="Property type">
           <DropDown
             elements={propertyTypes}
-            selectedValue={property.propertyType.defaultValue as PropertyType}
+            selectedValue={property.propertyType.type as PropertyType}
             onChange={({ target }) => onPropertyTypeChange(target.value)}
           />
         </FormElement>

@@ -25,13 +25,21 @@ const getPropsAndChildren = (properties: Property[] = []): any => {
   let children = null
 
   properties.forEach((property) => {
-    if (property?.visible) {
+    const formattedPropertyName = property.propertyName.toLowerCase()
+
+    if (property.visible) {
       if (
-        property?.propertyName.toLowerCase() === 'children' &&
-        property?.propertyType.type === 'node'
+        formattedPropertyName === 'children' &&
+        property.propertyType.type === 'node' &&
+        property.propertyType.defaultValue &&
+        property.propertyType.propertyControl
       ) {
-        children = createElement(property?.propertyType?.propertyControl)
-      } else if (property?.propertyType.defaultValue) {
+        children = createElement(
+          property.propertyType.propertyControl,
+          [],
+          property.propertyType.defaultValue
+        )
+      } else if (property.propertyType.defaultValue) {
         props[property.propertyName.toLowerCase()] = property?.propertyType?.defaultValue
       }
     }

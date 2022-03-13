@@ -23,7 +23,7 @@ export default function PropertyTypeNode({
       <FormGroup>
         <FormElement label="Property control">
           <DropDown
-            elements={['', 'select', 'textarea', 'p']}
+            elements={['', 'textarea', 'p', 'span', 'button']}
             selectedValue={propertyType.propertyControl}
             onChange={({ target }) =>
               onChangeHandler({

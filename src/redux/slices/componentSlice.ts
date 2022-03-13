@@ -9,6 +9,17 @@ const initialState: ComponentState = {
   displayAddProperty: false,
   properties: [
     {
+      propertyName: 'Children',
+      displayName: 'Children',
+      description: 'To use a different element as children',
+      visible: true,
+      propertyType: {
+        type: 'node',
+        propertyControl: 'span',
+        defaultValue: 'A DIFFERENT BUTTON LABEL'
+      }
+    },
+    {
       propertyName: 'Variant',
       displayName: 'Variant',
       description: 'The component variant',
