@@ -1,6 +1,5 @@
 type PropertyType = 'one of' | 'node' | 'boolean'
 type PropertyControlType = '' | 'select' | 'textarea' | 'p' | 'span'
-type PropertyValues = 'propertyName' | 'displayName' | 'description' | 'visible'
 
 interface Property {
   propertyName: string

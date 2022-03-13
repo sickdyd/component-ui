@@ -18,6 +18,10 @@ export default function PropertyTypeOneOf({
 }): JSX.Element {
   const propertyType = property.propertyType as PropertyTypeOneOf
 
+  const commaSeparatedOptions = propertyType?.options
+    ? [''].concat(propertyType?.options.split(','))
+    : ['']
+
   return (
     <Wrapper>
       <FormGroup>
@@ -46,7 +50,7 @@ export default function PropertyTypeOneOf({
         </FormElement>
         <FormElement label="Default value">
           <DropDown
-            elements={[''].concat(propertyType.options.split(','))}
+            elements={commaSeparatedOptions}
             selectedValue={propertyType.defaultValue}
             onChange={({ target }) =>
               onChangeHandler({
