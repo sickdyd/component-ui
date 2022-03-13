@@ -47,3 +47,15 @@ or
 ```
 npm install
 ```
+
+## To start the project
+
+```
+yarn start
+```
+
+or
+
+```
+npm start
+```
