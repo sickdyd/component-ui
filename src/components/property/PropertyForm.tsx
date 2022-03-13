@@ -12,12 +12,14 @@ const Wrapper = styled.div`
 
 export default function PropertyForm({
   property,
-  onChangeHandler
+  onChangeHandler,
+  isNew = false
 }: {
   property: Property
   onChangeHandler: (property: Property) => void
+  isNew?: boolean
 }): JSX.Element {
-  const { propertyName, displayName, description } = property || {}
+  const { propertyName, displayName, description } = property
 
   const onPropertyTypeChange = (type: string) => {
     let propertyType = {} as any
@@ -36,7 +38,10 @@ export default function PropertyForm({
   return (
     <Wrapper>
       <FormGroup>
-        <FormElement label="Property name">
+        <FormElement
+          label="Property name"
+          caption={isNew ? 'name of the property given in the code' : ''}
+        >
           <Input
             value={propertyName}
             onChange={({ target }) => onChangeHandler({ ...property, propertyName: target.value })}

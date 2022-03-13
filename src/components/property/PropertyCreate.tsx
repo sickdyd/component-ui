@@ -39,8 +39,8 @@ export default function PropertyCreate(): JSX.Element {
 
   return (
     <Wrapper>
-      <PropertyForm onChangeHandler={setProperty} property={property} />
-      <PropertyTypes onChangeHandler={setProperty} property={property} />
+      <PropertyForm onChangeHandler={setProperty} property={property} isNew />
+      <PropertyTypes onChangeHandler={setProperty} property={property} isNew />
       <ControlsWrapper>
         <Button variant="cancel" onClick={() => dispatch(showPropertyForm(false))}>
           Cancel

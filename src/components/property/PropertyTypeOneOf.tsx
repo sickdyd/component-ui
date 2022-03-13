@@ -11,10 +11,12 @@ const Wrapper = styled.div`
 
 export default function PropertyTypeOneOf({
   property,
-  onChangeHandler
+  onChangeHandler,
+  isNew = false
 }: {
   property: Property
   onChangeHandler: (property: Property) => void
+  isNew: boolean
 }): JSX.Element {
   const propertyType = property.propertyType as PropertyTypeOneOf
 
@@ -25,7 +27,14 @@ export default function PropertyTypeOneOf({
   return (
     <Wrapper>
       <FormGroup>
-        <FormElement label="Property control">
+        <FormElement
+          label="Property control"
+          caption={
+            isNew
+              ? "type of control displayed in editor's properties panel. Learn more about control types"
+              : ''
+          }
+        >
           <DropDown
             elements={['', 'select']}
             selectedValue={propertyType.propertyControl}

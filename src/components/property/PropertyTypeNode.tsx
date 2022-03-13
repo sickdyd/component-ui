@@ -11,17 +11,26 @@ const Wrapper = styled.div`
 
 export default function PropertyTypeNode({
   property,
-  onChangeHandler
+  onChangeHandler,
+  isNew = false
 }: {
   property: Property
   onChangeHandler: (property: Property) => void
+  isNew: boolean
 }): JSX.Element {
   const propertyType = property.propertyType as PropertyTypeNode
 
   return (
     <Wrapper>
       <FormGroup>
-        <FormElement label="Property control">
+        <FormElement
+          label="Property control"
+          caption={
+            isNew
+              ? "type of control displayed in editor's properties panel. Learn more about control types"
+              : ''
+          }
+        >
           <DropDown
             elements={['', 'textarea', 'p', 'span', 'button']}
             selectedValue={propertyType.propertyControl}

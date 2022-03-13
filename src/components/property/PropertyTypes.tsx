@@ -17,18 +17,20 @@ export const propertyTypes = Object.keys(PropertyType).map((key) => key)
 
 export default function PropertyTypes({
   property,
-  onChangeHandler
+  onChangeHandler,
+  isNew = false
 }: {
   property: Property
   onChangeHandler: (property: Property) => void
+  isNew?: boolean
 }): JSX.Element {
   return (
     <Wrapper>
       {property.propertyType.type === 'one of' && (
-        <PropertyTypeOneOf property={property} onChangeHandler={onChangeHandler} />
+        <PropertyTypeOneOf property={property} onChangeHandler={onChangeHandler} isNew={isNew} />
       )}
       {property.propertyType.type === 'node' && (
-        <PropertyTypeNode property={property} onChangeHandler={onChangeHandler} />
+        <PropertyTypeNode property={property} onChangeHandler={onChangeHandler} isNew={isNew} />
       )}
       {property.propertyType.type === 'boolean' && (
         <PropertyTypeBoolean property={property} onChangeHandler={onChangeHandler} />
