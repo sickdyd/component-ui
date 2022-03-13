@@ -12,7 +12,7 @@ The only Material UI component used is the `Button` in the preview, every other 
 
 ### Editing an existing property
 
-![editing](https://user-images.githubusercontent.com/45290018/158058294-99c49741-43b6-4615-b319-f55ab9965cb6.gif)
+![editing](https://user-images.githubusercontent.com/45290018/158058537-9d111047-6935-424e-9e73-97e19cf31ef6.gif)
 
 ### Toggling properties
 

@@ -62,7 +62,7 @@ export default function ComponentPreview(): JSX.Element {
         <Settings onClick={() => {}} />
       </Heading>
       <h2>Component Preview</h2>
-      <Button {...props}>{children || 'SIGN UP'}</Button>
+      <Button {...props}>{children}</Button>
     </Wrapper>
   )
 }

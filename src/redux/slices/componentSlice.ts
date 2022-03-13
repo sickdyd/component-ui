@@ -36,7 +36,7 @@ const initialState: ComponentState = {
       propertyType: {
         type: 'node',
         propertyControl: 'span',
-        defaultValue: 'A DIFFERENT BUTTON LABEL'
+        defaultValue: 'Sign Up'
       }
     },
     {
