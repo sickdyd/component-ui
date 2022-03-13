@@ -28,6 +28,7 @@ const Wrapper = styled.div<{ visible: boolean }>`
 
 const PropertyName = styled.div`
   display: flex;
+  align-items: flex-start;
   white-space: nowrap;
   gap: 1rem;
   width: 30%;
@@ -60,6 +61,7 @@ export default function PropertyShow({
       <PropertyName>
         {property.propertyName || 'Type a name...'}
         <ToggleVisibility
+          tooltip={property.visible ? 'Hide property' : 'Show property'}
           visible={property.visible}
           onClick={() => onChangeHandler({ ...property, visible: !property.visible })}
         />

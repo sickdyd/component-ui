@@ -1,21 +1,13 @@
-import styled from '@emotion/styled'
 import Delete from '@mui/icons-material/Delete'
-
-const Wrapper = styled.div`
-  &:hover {
-    cursor: pointer;
-  }
-
-  svg {
-    font-size: var(--icon-size);
-    color: var(--dark-grey);
-  }
-`
+import IconWrapper from 'components/icons/IconWrapper'
+import { Tooltip } from 'components/info/Tooltip'
 
 export default function DeleteProperty({ onClick }: { onClick: () => void }): JSX.Element {
   return (
-    <Wrapper onClick={onClick}>
-      <Delete />
-    </Wrapper>
+    <Tooltip text="Delete property">
+      <IconWrapper onClick={onClick}>
+        <Delete />
+      </IconWrapper>
+    </Tooltip>
   )
 }
