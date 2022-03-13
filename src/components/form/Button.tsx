@@ -3,24 +3,25 @@ import { MouseEventHandler, ReactNode } from 'react'
 
 type ButtonType = 'cancel' | 'confirm' | 'link'
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ compact: boolean }>`
   .link {
     text-decoration: underline;
     color: var(--blue);
-    padding: 0.5rem 0rem;
+    padding: ${({ compact }) => (compact ? '0.2rem 0' : '0.5rem 0rem')};
   }
 
   .cancel {
     text-decoration: underline;
     color: var(--dark-grey);
-    padding: 0.5rem 0rem;
+    padding: ${({ compact }) => (compact ? '0.2rem 0' : '0.5rem 0rem')};
   }
 
   .confirm {
     background-color: var(--blue);
-    font-weight: bold;
+    font-weight: ${({ compact }) => (compact ? 'normal' : 'bold')};
+    font-size: ${({ compact }) => (compact ? '0.75rem' : '1rem')};
     color: white;
-    padding: 0.5rem 1rem;
+    padding: ${({ compact }) => (compact ? '0.3rem 0.75rem' : '0.5rem 1rem')};
   }
 `
 
@@ -36,15 +37,17 @@ const StyledButton = styled.button`
 
 export default function Button({
   variant = 'confirm',
+  compact = false,
   onClick,
   children
 }: {
   variant?: ButtonType
-  onClick: MouseEventHandler<HTMLButtonElement>
+  compact?: boolean
+  onClick?: MouseEventHandler<HTMLButtonElement>
   children: ReactNode
 }): JSX.Element {
   return (
-    <Wrapper>
+    <Wrapper compact={compact}>
       <StyledButton onClick={onClick} className={variant}>
         {children}
       </StyledButton>

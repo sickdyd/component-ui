@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 
-const Wrapper = styled.span<{ position?: Position; visible: boolean }>`
+const Wrapper = styled.span<{ position?: Position; visible: boolean; leftEdge: boolean }>`
   visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
   position: fixed;
   top: ${({ position }) => (position ? `${position.top}px` : 'auto')};
@@ -17,7 +17,7 @@ const Wrapper = styled.span<{ position?: Position; visible: boolean }>`
     position: absolute;
     height: 0;
     width: 0;
-    left: calc(50% - 5px);
+    left: ${({ leftEdge }) => (leftEdge ? '4px' : 'calc(50% - 5px)')};
     top: -10px;
     content: ' ';
     border: 5px solid transparent;
@@ -41,6 +41,7 @@ export function Tooltip({
 }): JSX.Element | null {
   const [position, setPosition] = useState<Position>()
   const [visible, setVisible] = useState<boolean>(false)
+  const [leftEdge, setLeftEdge] = useState<boolean>(false)
   const tooltipRef = useRef<HTMLDivElement>(null)
   const elementRef = useRef<HTMLDivElement>(null)
 
@@ -57,7 +58,14 @@ export function Tooltip({
       const { current: tooltipElement } = tooltipRef
       const { width: tooltipWidth } = tooltipElement.getBoundingClientRect()
 
-      const left = elementLeft - tooltipWidth / 2 + elementWidth / 2
+      const computedLeft = elementLeft - tooltipWidth / 2 + elementWidth / 2
+      let left = computedLeft
+
+      if (computedLeft <= 10) {
+        left = 10
+        setLeftEdge(true)
+      }
+
       const top = elementTop + elementHeight + 10
 
       setPosition({ left, top })
@@ -78,7 +86,7 @@ export function Tooltip({
   return (
     <>
       {text && (
-        <Wrapper ref={tooltipRef} position={position} visible={visible}>
+        <Wrapper ref={tooltipRef} position={position} visible={visible} leftEdge={leftEdge}>
           {text}
         </Wrapper>
       )}
