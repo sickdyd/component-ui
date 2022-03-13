@@ -8,15 +8,15 @@ The only Material UI component used is the `Button` in the preview, every other 
 
 ### Adding a new property
 
-![adding](https://user-images.githubusercontent.com/45290018/158057868-639e2ec7-6f74-4c87-9810-a5f9948c8979.gif)
+![adding](https://user-images.githubusercontent.com/45290018/158058207-0dcedd43-253e-478b-9501-94815942f268.gif)
 
 ### Editing an existing property
 
-![editing](https://user-images.githubusercontent.com/45290018/158057872-0a056dd1-1521-466d-bd47-cdd1674c520e.gif)
+![editing](https://user-images.githubusercontent.com/45290018/158058294-99c49741-43b6-4615-b319-f55ab9965cb6.gif)
 
 ### Toggling properties
 
-![toggling](https://user-images.githubusercontent.com/45290018/158057875-0c7ac114-2156-4c9d-89f3-d74f180d3bcb.gif)
+![toggling](https://user-images.githubusercontent.com/45290018/158058204-f7906c8e-bb60-4691-a37f-94cc7c573a58.gif)
 
 ## Features
 
