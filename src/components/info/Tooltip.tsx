@@ -61,8 +61,8 @@ export function Tooltip({
       const computedLeft = elementLeft - tooltipWidth / 2 + elementWidth / 2
       let left = computedLeft
 
-      if (computedLeft <= 10) {
-        left = 10
+      if (computedLeft <= 11) {
+        left = 11
         setLeftEdge(true)
       }
 
