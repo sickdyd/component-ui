@@ -27,10 +27,10 @@ const Wrapper = styled.div<{ compact: boolean }>`
   .confirm {
     background-color: var(--blue-ribbon);
     font-weight: ${({ compact }) => (compact ? 'bold' : 'bold')};
-    font-size: ${({ compact }) => (compact ? '12px' : '1rem')};
-    line-height: 16px;
+    font-size: ${({ compact }) => (compact ? '12px' : '14px')};
+    line-height: ${({ compact }) => (compact ? '16px' : '18px')};
     color: white;
-    padding: ${({ compact }) => (compact ? '4px 13px 4px 14px' : '0.5rem 1rem')};
+    padding: ${({ compact }) => (compact ? '4px 13px 4px 14px' : '8px 20px')};
   }
 `
 

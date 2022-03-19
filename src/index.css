@@ -43,5 +43,7 @@ code {
 a,
 a:visited,
 a:active {
-  color: var(--gray);
+  color: var(--scorpion);
+  text-underline-offset: 1px;
+  text-decoration-color: var(--silver2);
 }

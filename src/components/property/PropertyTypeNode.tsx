@@ -3,6 +3,7 @@ import DropDown from 'components/form/DropDown'
 import FormElement from 'components/form/FormElement'
 import FormGroup from 'components/form/FormGroup'
 import TextArea from 'components/form/TextArea'
+import { propertyControlCaption } from 'components/property/PropertyTypeOneOf'
 
 const Wrapper = styled.div``
 
@@ -20,14 +21,7 @@ export default function PropertyTypeNode({
   return (
     <Wrapper>
       <FormGroup>
-        <FormElement
-          label="Property control"
-          caption={
-            isNew
-              ? "type of control displayed in editor's properties panel. Learn more about control types"
-              : ''
-          }
-        >
+        <FormElement label="Property control" caption={propertyControlCaption(isNew)}>
           <DropDown
             elements={['', 'textarea', 'p', 'span', 'button']}
             selectedValue={propertyType.propertyControl}

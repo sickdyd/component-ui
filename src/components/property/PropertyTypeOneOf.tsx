@@ -6,6 +6,14 @@ import TextArea from 'components/form/TextArea'
 
 const Wrapper = styled.div``
 
+export const propertyControlCaption = (isNew: boolean) =>
+  isNew ? (
+    <>
+      type of control displayed in editor's properties panel. <a href="/">Learn more</a> about
+      control types
+    </>
+  ) : null
+
 export default function PropertyTypeOneOf({
   property,
   onChangeHandler,
@@ -24,14 +32,7 @@ export default function PropertyTypeOneOf({
   return (
     <Wrapper>
       <FormGroup>
-        <FormElement
-          label="Property control"
-          caption={
-            isNew
-              ? "type of control displayed in editor's properties panel. Learn more about control types"
-              : ''
-          }
-        >
+        <FormElement label="Property control" caption={propertyControlCaption(isNew)}>
           <DropDown
             elements={['', 'select']}
             selectedValue={propertyType.propertyControl}

@@ -4,6 +4,8 @@ import Label from 'components/form/Label'
 import { ReactNode } from 'react'
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   color: var(--scorpion);
 `
 
@@ -24,6 +26,8 @@ export default function FormElement({
   vertical?: boolean
   children: ReactNode
 }): JSX.Element {
+  console.log(caption)
+
   return (
     <Wrapper>
       <InputWrapper vertical={vertical}>

@@ -41,7 +41,7 @@ export default function PropertyForm({
       <FormGroup>
         <FormElement
           label="Property name"
-          caption={isNew ? 'name of the property given in the code' : ''}
+          caption={isNew ? 'name of the property given in code' : ''}
         >
           <Input
             value={propertyName}

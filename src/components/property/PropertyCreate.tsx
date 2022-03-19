@@ -9,15 +9,17 @@ import { addProperty, showPropertyForm } from 'redux/slices/componentSlice'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1.25rem 1rem;
+  padding: 12px 20px 7px 20px;
   border-bottom: 1px solid var(--mercury);
+  width: 820px;
 `
 
 const ControlsWrapper = styled.div`
   display: flex;
+  align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
-  margin: 1rem 0;
+  gap: 15px;
+  margin: 10px 0;
 `
 
 const initialData: Property = {
