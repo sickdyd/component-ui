@@ -10,7 +10,8 @@ const Wrapper = styled.div`
 `
 
 const Main = styled.main`
-  padding: 2rem;
+  padding-left: 43px;
+  padding-top: 45px;
 `
 
 export default function App() {

@@ -1,19 +1,35 @@
 import styled from '@emotion/styled'
 import Button from '@mui/material/Button'
-import Settings from 'components/icons/Settings'
+import Icon from 'components/icons/Icon'
+import IconWrapper from 'components/icons/IconWrapper'
 import ToggleVisibility from 'components/icons/ToggleVisibility'
+import { Tooltip } from 'components/info/Tooltip'
 import camelCase from 'lodash/camelCase'
 import { createElement, useState } from 'react'
 import { useAppSelector } from 'redux/hooks'
 
 const Wrapper = styled.div`
   margin-bottom: 4rem;
+  max-width: 300px;
 `
 
 const Heading = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 5px;
+  margin-bottom: 30px;
+`
+
+const HeadingText = styled.h1`
+  margin: 0;
+  font-size: 36px;
+  color: var(--mine-shaft);
+  line-height: 40px;
+  margin-right: 8px;
+`
+
+const SubHeading = styled.h2`
+  margin-bottom: 18px;
 `
 
 const getPropsAndChildren = (properties: Property[] = []): any => {
@@ -53,15 +69,19 @@ export default function ComponentPreview(): JSX.Element {
   return (
     <Wrapper>
       <Heading>
-        <h1>Button</h1>
+        <HeadingText>Button</HeadingText>
         <ToggleVisibility
           visible={visible}
           tooltip="Toggle component visibility in library"
           onClick={() => setVisible((prev) => !prev)}
         />
-        <Settings onClick={() => {}} />
+        <Tooltip text="Component settings">
+          <IconWrapper>
+            <Icon src="/assets/icons/gear.svg" alt="Gear icon" />
+          </IconWrapper>
+        </Tooltip>
       </Heading>
-      <h2>Component Preview</h2>
+      <SubHeading>Component Preview</SubHeading>
       <Button {...props}>{children}</Button>
     </Wrapper>
   )

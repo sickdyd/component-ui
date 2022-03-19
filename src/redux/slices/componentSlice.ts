@@ -62,6 +62,28 @@ const initialState: ComponentState = {
         options: 'inherit,primary,secondary,success,error,info,warning',
         defaultValue: 'success'
       }
+    },
+    {
+      propertyName: 'Full Width',
+      displayName: 'Full Width',
+      description: 'Expand to full width',
+      visible: true,
+      propertyType: {
+        type: 'boolean',
+        defaultValue: true
+      }
+    },
+    {
+      propertyName: 'Size',
+      displayName: 'Size',
+      description: 'The button size',
+      visible: true,
+      propertyType: {
+        type: 'one of',
+        propertyControl: 'select',
+        options: 'default,small,medium,large',
+        defaultValue: 'large'
+      }
     }
   ]
 }

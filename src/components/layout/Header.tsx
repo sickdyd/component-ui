@@ -51,9 +51,9 @@ const IconWrapper = styled.p`
   justify-content: center;
   height: 14px;
   width: 14px;
-  border-radius: var(--border-radius);
   padding: 5px;
   transition: all 150ms;
+  border-radius: var(--border-radius);
 
   &:hover {
     cursor: pointer;

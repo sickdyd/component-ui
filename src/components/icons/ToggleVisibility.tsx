@@ -1,8 +1,13 @@
-import VisibilityOnIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import styled from '@emotion/styled'
+import Icon from 'components/icons/Icon'
 import IconWrapper from 'components/icons/IconWrapper'
 import { Tooltip } from 'components/info/Tooltip'
 import { useRef } from 'react'
+
+const StyledIconWrapper = styled(IconWrapper)`
+  margin-top: 2px;
+  margin-left: 1px;
+`
 
 export default function ToggleVisibility({
   visible = true,
@@ -17,9 +22,13 @@ export default function ToggleVisibility({
 
   return (
     <Tooltip text={tooltip}>
-      <IconWrapper ref={ref} onClick={onClick}>
-        {visible ? <VisibilityOnIcon /> : <VisibilityOffIcon />}
-      </IconWrapper>
+      <StyledIconWrapper ref={ref} onClick={onClick}>
+        <Icon
+          src={
+            visible ? '/assets/icons/visibility-visible.svg' : '/assets/icons/visibility-hidden.svg'
+          }
+        />
+      </StyledIconWrapper>
     </Tooltip>
   )
 }
