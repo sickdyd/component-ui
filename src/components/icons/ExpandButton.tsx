@@ -9,14 +9,14 @@ const Wrapper = styled.div`
   position: absolute;
   right: 0;
   top: 1rem;
-  background-color: var(--light-grey);
+  background-color: var(--mercury);
 
   &:hover {
     cursor: pointer;
   }
 
   svg {
-    color: var(--dark-grey);
+    color: var(--scorpion);
   }
 `
 

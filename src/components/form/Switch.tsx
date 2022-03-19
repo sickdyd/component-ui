@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 const SwitchWrapper = styled.div`
   display: inline;
   display: flex;
-  border: 1px solid var(--light-grey);
+  border: 1px solid var(--mercury);
   border-radius: var(--border-radius);
   width: fit-content;
 
@@ -18,8 +18,8 @@ const SwitchValue = styled.div<{ isTrue?: boolean }>`
   align-items: center;
   padding: 0.2rem 0.8rem;
   font-size: 14px;
-  border-right: 1px solid var(--light-grey);
-  background-color: ${({ isTrue }) => (isTrue ? 'var(--light-grey)' : 'white')};
+  border-right: 1px solid var(--mercury);
+  background-color: ${({ isTrue }) => (isTrue ? 'var(--mercury)' : 'white')};
 `
 
 export default function Switch({

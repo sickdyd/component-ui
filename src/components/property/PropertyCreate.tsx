@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1.25rem 1rem;
-  border-bottom: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--mercury);
 `
 
 const ControlsWrapper = styled.div`

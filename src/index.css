@@ -1,9 +1,17 @@
 :root {
-  --light-grey: rgb(230, 230, 230);
-  --grey: rgb(132, 132, 132);
-  --dark-grey: rgb(94, 94, 94);
-  --black: rgb(55, 55, 55);
-  --blue: rgb(0, 108, 255);
+  --gallery: #f0f0f0;
+  --mercury: #e6e6e6;
+  --alto1: #dadada;
+  --alto2: #d9d9d9;
+  --silver1: #cdcdcd;
+  --silver2: #c0c0c0;
+  --gray: #848484;
+  --boulder: #777777;
+  --scorpion: #5e5e5e;
+  --blue-ribbon: #006cff;
+  --emperor: #515151;
+  --mine-shaft: #373737;
+  --cod-gray: #111111;
 
   --border-radius: 2px;
 
@@ -25,10 +33,15 @@ code {
 * {
   box-sizing: border-box;
   font-family: Lato, Arial;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 a,
 a:visited,
 a:active {
-  color: var(--grey);
+  color: var(--gray);
 }

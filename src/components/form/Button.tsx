@@ -6,18 +6,18 @@ type ButtonType = 'cancel' | 'confirm' | 'link'
 const Wrapper = styled.div<{ compact: boolean }>`
   .link {
     text-decoration: underline;
-    color: var(--blue);
+    color: var(--blue-ribbon);
     padding: ${({ compact }) => (compact ? '0.2rem 0' : '0.5rem 0rem')};
   }
 
   .cancel {
     text-decoration: underline;
-    color: var(--dark-grey);
+    color: var(--scorpion);
     padding: ${({ compact }) => (compact ? '0.2rem 0' : '0.5rem 0rem')};
   }
 
   .confirm {
-    background-color: var(--blue);
+    background-color: var(--blue-ribbon);
     font-weight: ${({ compact }) => (compact ? 'normal' : 'bold')};
     font-size: ${({ compact }) => (compact ? '0.75rem' : '1rem')};
     color: white;

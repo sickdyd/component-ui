@@ -13,7 +13,7 @@ const Wrapper = styled.div<{ visible: boolean }>`
   position: relative;
   display: flex;
   padding: 1.25rem 1rem;
-  border-bottom: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--mercury);
 
   div,
   span,
@@ -22,7 +22,7 @@ const Wrapper = styled.div<{ visible: boolean }>`
   label,
   textarea,
   select {
-    color: ${({ visible }) => (visible ? 'inherit' : 'var(--light-grey)')};
+    color: ${({ visible }) => (visible ? 'inherit' : 'var(--mercury)')};
   }
 `
 

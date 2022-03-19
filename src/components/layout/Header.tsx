@@ -6,7 +6,9 @@ import { Tooltip } from 'components/info/Tooltip'
 const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--mercury);
+  min-height: 41px;
+  padding: 0 10px;
 `
 
 const Info = styled.div`
@@ -17,42 +19,64 @@ const Info = styled.div`
 const Controls = styled(Info)`
   display: flex;
   gap: 1rem;
-  margin: 0.5rem 1rem 0.5rem 0;
 `
 
 const Library = styled.span`
-  color: var(--grey);
+  color: var(--gray);
 `
 
 const ComponentName = styled.span`
-  color: var(--black);
+  color: var(--mine-shaft);
   font-weight: bold;
 `
 
-const IconWrapper = styled.div`
+const ComponentIcon = styled.div`
   display: flex;
   align-items: center;
-  border-right: 1px solid var(--light-grey);
-  padding: 0.2rem 0.5rem;
-  margin: 0.8rem 0.5rem 0.5rem 0;
 
   svg {
-    font-size: 1.2rem;
+    height: 18px;
+    width: 18px;
   }
+`
+
+const IconWrapper = styled.p`
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+  padding: 2px;
+  transition: all 150ms;
+
+  &:hover {
+    background-color: var(--mercury);
+    cursor: pointer;
+  }
+`
+
+const VerticalLine = styled.div`
+  border-right: 1px solid var(--mercury);
+  min-height: 24px;
+  margin: 0 10px;
 `
 
 export function Header(): JSX.Element {
   return (
     <Wrapper>
       <Info>
-        <IconWrapper>
+        <ComponentIcon>
           <Tooltip text="Open dashboard">
-            <GridView />
+            <IconWrapper>
+              <GridView />
+            </IconWrapper>
           </Tooltip>
-        </IconWrapper>
+        </ComponentIcon>
+        <VerticalLine />
         <Library>Material UI /&nbsp;</Library>
         <ComponentName>Button</ComponentName>
       </Info>
+
       <Controls>
         <Button variant="cancel">Discard Changes</Button>
         <Button compact={true}>Save Changes</Button>

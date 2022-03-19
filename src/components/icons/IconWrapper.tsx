@@ -7,12 +7,12 @@ const IconWrapper = styled.div`
 
   &:hover {
     cursor: pointer;
-    background-color: var(--light-grey);
+    background-color: var(--mercury);
   }
 
   svg {
     font-size: var(--icon-size);
-    color: var(--dark-grey);
+    color: var(--scorpion);
   }
 `
 

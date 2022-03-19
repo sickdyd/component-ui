@@ -2,9 +2,9 @@ import styled from '@emotion/styled'
 
 const Select = styled.select`
   border: unset;
-  color: var(--dark-grey);
+  color: var(--scorpion);
   font-size: 14px;
-  border-bottom: 1px solid var(--light-grey);
+  border-bottom: 1px solid var(--mercury);
   min-width: 100px;
 `
 

@@ -8,12 +8,12 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--blue);
+  color: var(--blue-ribbon);
   margin-bottom: 1rem;
 
   h2 {
     margin: 0;
-    color: var(--black);
+    color: var(--mine-shaft);
   }
 `
 
