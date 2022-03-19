@@ -9,23 +9,15 @@ const initialState: ComponentState = {
   displayAddProperty: false,
   properties: [
     {
-      propertyName: 'Disabled',
-      displayName: 'Disabled',
-      description: 'It disables the button',
-      visible: false,
+      propertyName: 'Color',
+      displayName: 'Color',
+      description: 'The text color',
+      visible: true,
       propertyType: {
-        type: 'boolean',
-        defaultValue: true
-      }
-    },
-    {
-      propertyName: 'Disable Ripple',
-      displayName: 'Disabled Ripple',
-      description: 'It disables the ripple effect',
-      visible: false,
-      propertyType: {
-        type: 'boolean',
-        defaultValue: true
+        type: 'one of',
+        propertyControl: 'select',
+        options: 'inherit,primary,secondary,success,error,info,warning',
+        defaultValue: 'primary'
       }
     },
     {
@@ -40,33 +32,49 @@ const initialState: ComponentState = {
       }
     },
     {
-      propertyName: 'Variant',
-      displayName: 'Variant',
-      description: 'The component variant',
+      propertyName: 'Disabled',
+      displayName: 'Disabled',
+      description: 'It disables the button',
       visible: true,
       propertyType: {
-        type: 'one of',
-        propertyControl: 'select',
-        options: 'contained,outlined,text',
-        defaultValue: 'contained'
+        type: 'boolean',
+        defaultValue: false
       }
     },
     {
-      propertyName: 'Color',
-      displayName: 'Color',
-      description: 'The text color',
-      visible: true,
+      propertyName: 'Disable focus ripple',
+      displayName: 'Disabled focus ripple',
+      description: 'It disables the focus ripple effect',
+      visible: false,
       propertyType: {
-        type: 'one of',
-        propertyControl: 'select',
-        options: 'inherit,primary,secondary,success,error,info,warning',
-        defaultValue: 'primary'
+        type: 'boolean',
+        defaultValue: true
       }
     },
     {
-      propertyName: 'Full Width',
-      displayName: 'Full Width',
+      propertyName: 'Disable ripple',
+      displayName: 'Disabled ripple',
+      description: 'It disables the focus ripple effect',
+      visible: false,
+      propertyType: {
+        type: 'boolean',
+        defaultValue: true
+      }
+    },
+    {
+      propertyName: 'Full width',
+      displayName: 'Full width',
       description: 'Expand to full width',
+      visible: true,
+      propertyType: {
+        type: 'boolean',
+        defaultValue: true
+      }
+    },
+    {
+      propertyName: 'Mini',
+      displayName: 'Mini',
+      description: 'Mini size',
       visible: true,
       propertyType: {
         type: 'boolean',
@@ -83,6 +91,18 @@ const initialState: ComponentState = {
         propertyControl: 'select',
         options: 'default,small,medium,large',
         defaultValue: 'large'
+      }
+    },
+    {
+      propertyName: 'Variant',
+      displayName: 'Variant',
+      description: 'The component variant',
+      visible: true,
+      propertyType: {
+        type: 'one of',
+        propertyControl: 'select',
+        options: 'contained,outlined,text',
+        defaultValue: 'contained'
       }
     }
   ]

@@ -1,18 +1,18 @@
 import styled from '@emotion/styled'
-import ExpandIcon from '@mui/icons-material/Add'
-import CompactIcon from '@mui/icons-material/Clear'
+import Icon from 'components/icons/Icon'
 
 const Wrapper = styled.div`
   display: flex;
   jusityf-content: center;
   align-items: center;
   position: absolute;
-  right: 0;
-  top: 1rem;
-  background-color: var(--mercury);
+  right: 20px;
+  top: 11px;
+  padding: 5px;
 
   &:hover {
     cursor: pointer;
+    background-color: var(--gallery);
   }
 
   svg {
@@ -27,5 +27,13 @@ export default function ExpandButton({
   expanded: boolean
   onClick: () => void
 }): JSX.Element {
-  return <Wrapper onClick={onClick}>{expanded ? <CompactIcon /> : <ExpandIcon />}</Wrapper>
+  return (
+    <Wrapper onClick={onClick}>
+      {expanded ? (
+        <Icon src="/assets/icons/action-close.svg" alt="Compact icon" />
+      ) : (
+        <Icon src="/assets/icons/plus.svg" alt="Expand icon" />
+      )}
+    </Wrapper>
+  )
 }

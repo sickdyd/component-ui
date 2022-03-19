@@ -9,7 +9,7 @@ import { createElement, useState } from 'react'
 import { useAppSelector } from 'redux/hooks'
 
 const Wrapper = styled.div`
-  margin-bottom: 78px;
+  margin-bottom: 78.5px;
   max-width: 300px;
 `
 
@@ -17,7 +17,7 @@ const Heading = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 29.5px;
 `
 
 const HeadingText = styled.h1`
@@ -25,7 +25,7 @@ const HeadingText = styled.h1`
   font-size: 36px;
   color: var(--mine-shaft);
   line-height: 40px;
-  margin-right: 8px;
+  margin-right: 7.5px;
 `
 
 const SubHeading = styled.h2`

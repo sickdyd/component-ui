@@ -9,23 +9,20 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   color: var(--blue-ribbon);
-  margin-bottom: 1rem;
+  margin-bottom: 11px;
 `
 
 const Heading = styled.h2`
   margin: 0;
   margin-bottom: 5px;
+  margin-top: 1px;
   color: var(--mine-shaft);
 `
 
 const PlusIcon = styled(Icon)`
   width: 8px;
   height: 9px;
-  margin: -1px 5px 0 10px;
-`
-
-const StyledLinkButton = styled(Button)`
-  margin-top: 0px;
+  margin: -1.5px 5px 0 9.5px;
 `
 
 export default function AddPropertyMenu(): JSX.Element {
@@ -37,9 +34,9 @@ export default function AddPropertyMenu(): JSX.Element {
       <Wrapper>
         <Heading>Properties</Heading>
         <PlusIcon src="/assets/icons/plus-icon.svg" alt="Plus icon" />
-        <StyledLinkButton variant="link" onClick={() => dispatch(showPropertyForm(true))}>
+        <Button variant="link" onClick={() => dispatch(showPropertyForm(true))}>
           Add new property
-        </StyledLinkButton>
+        </Button>
       </Wrapper>
       {displayAddProperty && <PropertyCreate />}
     </>

@@ -12,7 +12,9 @@ import { deleteProperty, updateProperty } from 'redux/slices/componentSlice'
 const Wrapper = styled.div<{ visible: boolean }>`
   position: relative;
   display: flex;
-  padding: 1.25rem 1rem;
+  align-items: flex-start;
+  width: 820px;
+  padding: 7px 20px;
   border-bottom: 1px solid var(--mercury);
 
   div,
@@ -26,14 +28,18 @@ const Wrapper = styled.div<{ visible: boolean }>`
   }
 `
 
-const PropertyName = styled.div`
+const PropertyNameWrapper = styled.div`
   display: flex;
-  align-items: flex-start;
-  white-space: nowrap;
-  gap: 1rem;
-  width: 30%;
-  min-width: 200px;
-  font-size: 1.1rem;
+  justify-content: flex-start;
+  align-items: center;
+  width: 230px;
+`
+
+const PropertyName = styled.span`
+  font-size: 18px;
+  line-height: 32px;
+  color: var(--mine-shaft);
+  margin-right: 2px;
 `
 
 const FormFields = styled(FormGroup)`
@@ -58,15 +64,15 @@ export default function PropertyShow({
   return (
     <Wrapper visible={property.visible}>
       <ExpandButton expanded={expanded} onClick={() => setExpanded((prev) => !prev)} />
-      <PropertyName>
-        {property.propertyName || 'Type a name...'}
+      <PropertyNameWrapper>
+        <PropertyName>{property.propertyName || 'Type a name...'}</PropertyName>
         <ToggleVisibility
           tooltip={property.visible ? 'Hide property' : 'Show property'}
           visible={property.visible}
           onClick={() => onChangeHandler({ ...property, visible: !property.visible })}
         />
-        <DeleteProperty onClick={() => dispatch(deleteProperty(index))} />
-      </PropertyName>
+        {expanded && <DeleteProperty onClick={() => dispatch(deleteProperty(index))} />}
+      </PropertyNameWrapper>
       {expanded && (
         <FormFields>
           <PropertyForm onChangeHandler={onChangeHandler} property={property} />

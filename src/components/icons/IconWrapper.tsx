@@ -7,6 +7,9 @@ const IconWrapper = styled.div`
   border-radius: var(--border-radius);
   transition: all 150ms;
   user-select: none;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
 
   &:hover {
     cursor: pointer;

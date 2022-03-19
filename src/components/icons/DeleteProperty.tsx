@@ -1,4 +1,4 @@
-import Delete from '@mui/icons-material/Delete'
+import Icon from 'components/icons/Icon'
 import IconWrapper from 'components/icons/IconWrapper'
 import { Tooltip } from 'components/info/Tooltip'
 
@@ -6,7 +6,7 @@ export default function DeleteProperty({ onClick }: { onClick: () => void }): JS
   return (
     <Tooltip text="Delete property">
       <IconWrapper onClick={onClick}>
-        <Delete />
+        <Icon src="/assets/icons/trash.svg" alt="Trash icon" />
       </IconWrapper>
     </Tooltip>
   )
