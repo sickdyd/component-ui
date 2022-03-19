@@ -18,7 +18,7 @@ const Wrapper = styled.div<{ compact: boolean }>`
     text-decoration: underline;
     font-size: 14px;
     line-height: 24px;
-    text-underline-offset: 1px;
+    text-underline-offset: 0.5px;
     text-decoration-color: var(--silver1);
     color: var(--scorpion);
     padding: ${({ compact }) => (compact ? '0.2rem 0' : '0.5rem 0rem')};

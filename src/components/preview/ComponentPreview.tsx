@@ -51,12 +51,16 @@ const getPropsAndChildren = (properties: Property[] = []): any => {
           [],
           property.propertyType.defaultValue
         )
+      } else if (formattedPropertyName === 'mini') {
+        props['mini'] = property.propertyType.defaultValue ? 1 : 0
       } else if (property.propertyType.defaultValue) {
         property.propertyType.defaultValue &&
           (props[formattedPropertyName] = property.propertyType.defaultValue)
       }
     }
   })
+
+  console.log(props)
 
   return { props, children }
 }
@@ -82,7 +86,9 @@ export default function ComponentPreview(): JSX.Element {
         </Tooltip>
       </Heading>
       <SubHeading>Component Preview</SubHeading>
-      <Button {...props}>{children}</Button>
+      <Button mini {...props}>
+        {children}
+      </Button>
     </Wrapper>
   )
 }

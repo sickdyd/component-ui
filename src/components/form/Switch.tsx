@@ -5,7 +5,6 @@ const SwitchWrapper = styled.div`
   display: flex;
   border: 1px solid var(--mercury);
   border-radius: var(--border-radius);
-  width: fit-content;
 
   &:hover {
     cursor: pointer;
@@ -18,8 +17,10 @@ const SwitchValue = styled.div<{ isTrue?: boolean }>`
   align-items: center;
   padding: 0.2rem 0.8rem;
   font-size: 14px;
-  border-right: 1px solid var(--mercury);
-  background-color: ${({ isTrue }) => (isTrue ? 'var(--mercury)' : 'white')};
+  border-right: 1px solid ${({ isTrue }) => (isTrue ? 'var(--mercury)' : 'none')});
+  background-color: ${({ isTrue }) => (isTrue ? 'var(--gallery)' : 'white')};
+  width: 58px;
+  height: 22px;
 `
 
 export default function Switch({

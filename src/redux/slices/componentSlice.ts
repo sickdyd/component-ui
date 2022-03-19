@@ -35,10 +35,10 @@ const initialState: ComponentState = {
       propertyName: 'Disabled',
       displayName: 'Disabled',
       description: 'It disables the button',
-      visible: true,
+      visible: false,
       propertyType: {
         type: 'boolean',
-        defaultValue: false
+        defaultValue: true
       }
     },
     {
