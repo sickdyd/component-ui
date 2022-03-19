@@ -60,7 +60,7 @@ const initialState: ComponentState = {
         type: 'one of',
         propertyControl: 'select',
         options: 'inherit,primary,secondary,success,error,info,warning',
-        defaultValue: 'success'
+        defaultValue: 'primary'
       }
     },
     {

@@ -9,7 +9,7 @@ import { createElement, useState } from 'react'
 import { useAppSelector } from 'redux/hooks'
 
 const Wrapper = styled.div`
-  margin-bottom: 4rem;
+  margin-bottom: 78px;
   max-width: 300px;
 `
 

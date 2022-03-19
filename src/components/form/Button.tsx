@@ -8,6 +8,10 @@ const Wrapper = styled.div<{ compact: boolean }>`
     text-decoration: underline;
     color: var(--blue-ribbon);
     padding: ${({ compact }) => (compact ? '0.2rem 0' : '0.5rem 0rem')};
+    font-size: 14px;
+    line-height: 24px;
+    text-underline-offset: 1px;
+    text-decoration-color: rgba(0, 108, 255, 0.3);
   }
 
   .cancel {
