@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import GridView from '@mui/icons-material/GridView'
 import Button from 'components/form/Button'
 import { Tooltip } from 'components/info/Tooltip'
 
@@ -8,17 +7,23 @@ const Wrapper = styled.header`
   justify-content: space-between;
   border-bottom: 1px solid var(--mercury);
   min-height: 41px;
-  padding: 0 10px;
+  padding: 0 19px 0 8px;
 `
 
 const Info = styled.div`
   display: flex;
   align-items: center;
+
+  font-family: Lato;
+  font-size: 15px;
+  color: var(--boulder);
+  line-height: 20px;
+  font-feature-settings: 'liga' 0;
 `
 
 const Controls = styled(Info)`
   display: flex;
-  gap: 1rem;
+  gap: 21px;
 `
 
 const Library = styled.span`
@@ -27,17 +32,16 @@ const Library = styled.span`
 
 const ComponentName = styled.span`
   color: var(--mine-shaft);
-  font-weight: bold;
+  font-weight: 700;
 `
 
 const ComponentIcon = styled.div`
   display: flex;
   align-items: center;
+`
 
-  svg {
-    height: 18px;
-    width: 18px;
-  }
+const SlashText = styled.span`
+  color: var(--mine-shaft);
 `
 
 const IconWrapper = styled.p`
@@ -45,20 +49,25 @@ const IconWrapper = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 14px;
+  width: 14px;
   border-radius: var(--border-radius);
-  padding: 2px;
+  padding: 5px;
   transition: all 150ms;
 
   &:hover {
-    background-color: var(--mercury);
     cursor: pointer;
+    background-color: var(--gallery);
   }
 `
 
+const GridIcon = styled.img``
+
 const VerticalLine = styled.div`
-  border-right: 1px solid var(--mercury);
+  border-right: 1px solid transparent;
   min-height: 24px;
-  margin: 0 10px;
+  margin: 0 16px 0 11px;
+  background-color: #dadada;
 `
 
 export function Header(): JSX.Element {
@@ -68,18 +77,19 @@ export function Header(): JSX.Element {
         <ComponentIcon>
           <Tooltip text="Open dashboard">
             <IconWrapper>
-              <GridView />
+              <GridIcon src="/assets/icons/layout-medium-tile-outline.svg" />
             </IconWrapper>
           </Tooltip>
         </ComponentIcon>
         <VerticalLine />
-        <Library>Material UI /&nbsp;</Library>
-        <ComponentName>Button</ComponentName>
+        <Library>Material UI&nbsp;</Library>
+        <SlashText>/</SlashText>
+        <ComponentName>&nbsp;Button</ComponentName>
       </Info>
 
       <Controls>
-        <Button variant="cancel">Discard Changes</Button>
-        <Button compact={true}>Save Changes</Button>
+        <Button variant="cancel">Discard changes</Button>
+        <Button compact={true}>Save changes</Button>
       </Controls>
     </Wrapper>
   )

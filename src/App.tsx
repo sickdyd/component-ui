@@ -4,7 +4,10 @@ import ComponentPreview from 'components/preview/ComponentPreview'
 import AddPropertyMenu from 'components/property/AddPropertyMenu'
 import PropertyList from 'components/property/PropertyList'
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  max-width: 1182px;
+  border-right: 1px solid var(--mercury);
+`
 
 const Main = styled.main`
   padding: 2rem;

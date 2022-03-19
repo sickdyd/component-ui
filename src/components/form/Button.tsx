@@ -12,16 +12,21 @@ const Wrapper = styled.div<{ compact: boolean }>`
 
   .cancel {
     text-decoration: underline;
+    font-size: 14px;
+    line-height: 24px;
+    text-underline-offset: 1px;
+    text-decoration-color: var(--silver1);
     color: var(--scorpion);
     padding: ${({ compact }) => (compact ? '0.2rem 0' : '0.5rem 0rem')};
   }
 
   .confirm {
     background-color: var(--blue-ribbon);
-    font-weight: ${({ compact }) => (compact ? 'normal' : 'bold')};
-    font-size: ${({ compact }) => (compact ? '0.75rem' : '1rem')};
+    font-weight: ${({ compact }) => (compact ? 'bold' : 'bold')};
+    font-size: ${({ compact }) => (compact ? '12px' : '1rem')};
+    line-height: 16px;
     color: white;
-    padding: ${({ compact }) => (compact ? '0.3rem 0.75rem' : '0.5rem 1rem')};
+    padding: ${({ compact }) => (compact ? '4px 13px 4px 14px' : '0.5rem 1rem')};
   }
 `
 

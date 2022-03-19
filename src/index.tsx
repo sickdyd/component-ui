@@ -1,4 +1,5 @@
 import '@fontsource/lato'
+import '@fontsource/lato/700.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
