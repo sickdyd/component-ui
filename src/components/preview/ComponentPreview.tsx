@@ -84,9 +84,7 @@ export default function ComponentPreview(): JSX.Element {
         </Tooltip>
       </Heading>
       <SubHeading>Component Preview</SubHeading>
-      <Button mini {...props}>
-        {children}
-      </Button>
+      <Button {...props}>{children}</Button>
     </Wrapper>
   )
 }
