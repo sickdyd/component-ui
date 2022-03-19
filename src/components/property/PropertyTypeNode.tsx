@@ -33,7 +33,7 @@ export default function PropertyTypeNode({
             }
           />
         </FormElement>
-        <FormElement label="Default value">
+        <FormElement label="Default value" vertical>
           <TextArea
             value={propertyType.defaultValue}
             onChange={({ target }) =>
