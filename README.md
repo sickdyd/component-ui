@@ -6,19 +6,9 @@ The only Material UI component used is the `Button` in the preview, every other 
 
 ## Screenshots
 
-<img width="924" alt="Screen Shot 2022-03-13 at 22 03 51" src="https://user-images.githubusercontent.com/45290018/158060663-5061943c-5617-4ab4-8c44-e904468577b9.png">
+<img width="1193" alt="screenshot" src="https://user-images.githubusercontent.com/45290018/159118050-11ce6ade-276c-4fa6-bf71-9b04ea02f1ee.png">
 
-### Adding a new property
-
-![adding](https://user-images.githubusercontent.com/45290018/158058207-0dcedd43-253e-478b-9501-94815942f268.gif)
-
-### Editing an existing property
-
-![editing](https://user-images.githubusercontent.com/45290018/158058596-df47f91d-8e62-41a2-9d28-d26e52a24c34.gif)
-
-### Toggling properties
-
-![toggling](https://user-images.githubusercontent.com/45290018/158058204-f7906c8e-bb60-4691-a37f-94cc7c573a58.gif)
+![video](https://user-images.githubusercontent.com/45290018/159118051-a5ed2f6a-3eab-4247-b561-316658e72fe2.gif)
 
 ## Features
 
