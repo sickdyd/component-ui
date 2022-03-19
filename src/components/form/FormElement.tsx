@@ -3,7 +3,9 @@ import Caption from 'components/form/Caption'
 import Label from 'components/form/Label'
 import { ReactNode } from 'react'
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  color: var(--scorpion);
+`
 
 const InputWrapper = styled.div<{ vertical: boolean }>`
   display: flex;

@@ -2,9 +2,8 @@ import styled from '@emotion/styled'
 
 const Label = styled.label`
   all: unset;
-  color: var(--scorpion);
   font-size: 14px;
-  margin-right: 1rem;
+  margin-right: 21.5px;
 `
 
 export default Label

@@ -3,10 +3,7 @@ import FormElement from 'components/form/FormElement'
 import FormGroup from 'components/form/FormGroup'
 import Switch from 'components/form/Switch'
 
-const Wrapper = styled.div`
-  position: relative;
-  margin-top: 1rem;
-`
+const Wrapper = styled.div``
 
 export default function PropertyTypeBoolean({
   property,

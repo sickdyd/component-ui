@@ -8,6 +8,7 @@ import { propertyTypes } from 'components/property/PropertyTypes'
 
 const Wrapper = styled.div`
   position: relative;
+  width: 513px;
 `
 
 export default function PropertyForm({
@@ -57,6 +58,8 @@ export default function PropertyForm({
           <TextArea
             value={description}
             onChange={({ target }) => onChangeHandler({ ...property, description: target.value })}
+            rows={2}
+            cols={50}
           />
         </FormElement>
         <FormElement label="Property type">

@@ -4,10 +4,7 @@ import FormElement from 'components/form/FormElement'
 import FormGroup from 'components/form/FormGroup'
 import TextArea from 'components/form/TextArea'
 
-const Wrapper = styled.div`
-  position: relative;
-  margin-top: 1rem;
-`
+const Wrapper = styled.div``
 
 export default function PropertyTypeNode({
   property,

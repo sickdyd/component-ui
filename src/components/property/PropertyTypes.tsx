@@ -5,6 +5,7 @@ import PropertyTypeOneOf from 'components/property/PropertyTypeOneOf'
 
 const Wrapper = styled.div`
   position: relative;
+  max-width: 513px;
 `
 
 enum PropertyType {

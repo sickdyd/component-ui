@@ -10,8 +10,8 @@ const initialState: ComponentState = {
   properties: [
     {
       propertyName: 'Color',
-      displayName: 'Color',
-      description: 'The text color',
+      displayName: '',
+      description: '',
       visible: true,
       propertyType: {
         type: 'one of',

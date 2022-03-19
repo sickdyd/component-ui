@@ -2,13 +2,11 @@ import styled from '@emotion/styled'
 
 const TextArea = styled.textarea`
   all: unset;
-  width: 100%;
-  margin-top: 4px;
-  color: var(--gray);
+  padding: 3px 8px;
+  background-color: white;
   border: 1px solid var(--mercury);
   font-size: 14px;
-  padding: 0.3rem 0.5rem;
-  max-width: 600px;
+  line-height: 16px;
 `
 
 export default TextArea

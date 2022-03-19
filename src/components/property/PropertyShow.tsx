@@ -24,7 +24,7 @@ const Wrapper = styled.div<{ visible: boolean }>`
   label,
   textarea,
   select {
-    color: ${({ visible }) => (visible ? 'inherit' : 'var(--mercury)')};
+    ${({ visible }) => !visible && 'color: var(--silver1);'};
   }
 `
 
@@ -32,7 +32,7 @@ const PropertyNameWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 230px;
+  width: 226px;
 `
 
 const PropertyName = styled.span`
@@ -44,7 +44,8 @@ const PropertyName = styled.span`
 
 const FormFields = styled(FormGroup)`
   position: relative;
-  width: 60%;
+  margin-top: 3.5px;
+  margin-bottom: 10px;
 `
 
 export default function PropertyShow({
