@@ -25,6 +25,7 @@ Once opened a default set of properties will be loaded. Add any property and cus
 
 - [React](https://react.org)
 - [emotion](https://emotion.sh)
+- [Redux](https://redux.js.org/)
 
 ## Installation
 
