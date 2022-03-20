@@ -75,7 +75,7 @@ const initialState: ComponentState = {
       propertyName: 'Mini',
       displayName: 'Mini',
       description: 'Mini size',
-      visible: true,
+      visible: false,
       propertyType: {
         type: 'boolean',
         defaultValue: true
