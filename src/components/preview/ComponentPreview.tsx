@@ -51,8 +51,6 @@ const getPropsAndChildren = (properties: Property[] = []): any => {
           [],
           property.propertyType.defaultValue
         )
-      } else if (formattedPropertyName === 'mini') {
-        property.propertyType.defaultValue && (props['mini'] = '')
       } else if (property.propertyType.defaultValue) {
         property.propertyType.defaultValue &&
           (props[formattedPropertyName] = property.propertyType.defaultValue)
