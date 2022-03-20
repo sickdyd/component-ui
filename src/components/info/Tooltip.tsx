@@ -12,6 +12,7 @@ const Wrapper = styled.span<{ position?: Position; visible: boolean; leftEdge: b
   font-size: 12px;
   padding: 0.2rem 0.5rem;
   text-align: center;
+  z-index: 10;
 
   &:before {
     position: absolute;
