@@ -58,8 +58,6 @@ const getPropsAndChildren = (properties: Property[] = []): any => {
     }
   })
 
-  console.log(props)
-
   return { props, children }
 }
 
